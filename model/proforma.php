@@ -16,7 +16,7 @@ class Proforma {
             die($e->getMessage());
         }
     }
-///////
+///////ll
     public function Listar() {
        try 
         {
