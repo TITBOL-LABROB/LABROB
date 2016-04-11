@@ -1,106 +1,246 @@
+    </div>
+</div>
+<!-- JavaScript bootstrap -->
+<script src="resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-			</div><!--/.fluid-container-->
-	
-			<!-- end: Content -->
-		</div><!--/#content.span10-->
-		</div><!--/fluid-row-->
-		
-	<div class="modal hide fade" id="myModal">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Settings</h3>
-		</div>
-		<div class="modal-body">
-			<p>Here settings can be configured...</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-		</div>
-	</div>
-	
-	<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-content">
-			<ul class="list-inline item-details">
-				<li><a href="http://themifycloud.com">Admin templates</a></li>
-				<li><a href="http://themescloud.org">Bootstrap themes</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="clearfix"></div>
-	
-	<footer>
+<!-- JavaScript para multimenu -->
+<script src="resources/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-		<p>
-			<span style="text-align:center;float:left">&copy; 2016 <a href="#">TITBOL</a></span>
-			
-		</p>
+<!-- JavaScript para tablas -->
+<script src="resources/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="resources/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
-	</footer>
-	
-	<!-- start: JavaScript-->
+<!-- JavaScript para fullscreen -->
+<script src="resources/bower_components/fullscreen/index.js"></script>
 
-		<script src="resources/js/jquery-1.9.1.min.js"></script>
+<!-- JavaScript para Clock Cocks -->
+<script type="text/javascript" src="resources/bower_components/clock/js/bootstrap-clockpicker.min.js"></script>
 
-		<script src="resources/js/jquery-migrate-1.0.0.min.js"></script>
-	
-		<script src="resources/js/jquery-ui-1.10.0.custom.min.js"></script>
-	
-		<script src="resources/js/jquery.ui.touch-punch.js"></script>
-	
-		<script src="resources/js/modernizr.js"></script>
-	
-		<script src="resources/js/bootstrap.min.js"></script>
-	
-		<script src="resources/js/jquery.cookie.js"></script>
-	
-		<script src='resources/js/fullcalendar.min.js'></script>
-	
-		<script src='resources/js/jquery.dataTables.min.js'></script>
+<!-- JavaScript para Calendario-->
+<script type="text/javascript" src="resources/bower_components/calendar/js/zabuto_calendar.js"></script>
 
-		<script src="resources/js/excanvas.js"></script>
-		
-		<script src="resources/js/jquery.flot.js"></script>
-		
-		<script src="resources/js/jquery.flot.pie.js"></script>
-		
-		<script src="resources/js/jquery.flot.stack.js"></script>
-		
-		<script src="resources/js/jquery.flot.resize.min.js"></script>
-	
-		<script src="resources/js/jquery.chosen.min.js"></script>
-	
-		<script src="resources/js/jquery.uniform.min.js"></script>
-		
-		<script src="resources/js/jquery.cleditor.min.js"></script>
-	
-		<script src="resources/js/jquery.noty.js"></script>
-	
-		<script src="resources/js/jquery.elfinder.min.js"></script>
-	
-		<script src="resources/js/jquery.raty.min.js"></script>
-	
-		<script src="resources/js/jquery.iphone.toggle.js"></script>
-	
-		<script src="resources/js/jquery.uploadify-3.1.min.js"></script>
-	
-		<script src="resources/js/jquery.gritter.min.js"></script>
-	
-		<script src="resources/js/jquery.imagesloaded.js"></script>
-	
-		<script src="resources/js/jquery.masonry.min.js"></script>
-	
-		<script src="resources/js/jquery.knob.modified.js"></script>
-	
-		<script src="resources/js/jquery.sparkline.min.js"></script>
-	
-		<script src="resources/js/counter.js"></script>
-	
-		<script src="resources/js/retina.js"></script>
+<!-- JavaScript para Multiselect -->
+<script src="resources/bower_components/multiselect/js/bootstrap-multiselect.js"></script>
+<script src="resources/bower_components/multiselect/js/bootstrap-multiselect-collapsible-groups.js"></script>
 
-		<script src="resources/js/custom.js"></script>
-	<!-- end: JavaScript-->
-	
+<!-- JavaScript principal -->
+<script src="resources/js/jsprincipal.js"></script>
+
+<script>
+    var elemento='';
+    var controlador='';
+    var pk='';
+    var existe=false;
+
+    $(document).ready(function() {
+        //Evento al presionar una tecla en los inputs. Ya que al imprimir se necesita los "Value" de los inputs
+        $("input").keypress(function(){
+            $(this).attr("value",$(this).val());
+        });
+
+        //Mensajes Sweet Alert
+        var correcto = true;
+        /*if ( == 1) {
+            swal({
+                imageUrl: 'resources/img/logo.png',
+                title: '',
+                text: 'Bienvenido de nuevo.',
+                confirmButtonText: 'Cerrar',
+                timer: 3000
+            });
+        }*/
+        if (<?php echo $bandera; ?> == 1){
+            var mensaje = "";
+            switch ("<?php echo $tarea;?>") {
+                case "agregar":
+                    if ("<?php echo $exito;?>" == "si") {
+                        mensaje = "Se ha agregado un nuevo ";
+                    } else {
+                        mensaje = "No se puede registrar un nuevo ";
+                        correcto = false;
+                    }
+                    break;
+                case "modificar":
+                    if ("<?php echo $exito;?>" == "si") {
+                        mensaje = "Se ha modificado un ";
+                    } else {
+                        mensaje = "Hubo un error al modificar un ";
+                        correcto = false;
+                    }
+                    break;
+                case "eliminar":
+                    if ("<?php echo $exito;?>" == "si") {
+                        mensaje = "Se ha eliminado un ";
+                    } else {
+                        mensaje = "Hubo un error al eliminar un ";
+                        correcto = false;
+                    }
+                    break;
+                case "username":
+                    if ("<?php echo $exito;?>" == "si") {
+                      ExisteUsername();
+                      existe=true;
+                    }
+                    break;
+                case "correo":
+                    if ("<?php echo $exito;?>" == "si") {
+                      ExisteCorreo();
+                      existe=true;
+                    }
+                    break;
+                case "tipo":
+                    if ("<?php echo $exito;?>" == "si") {
+                      ExisteTipo();
+                      existe=true;
+                    }
+                    break;
+                case "detalle_grupo":
+                    if ("<?php echo $exito;?>" == "si") {
+                      ExisteDetalleGrupo();
+                      existe=true;
+                    }
+                    break;                
+            }
+            mensaje = mensaje + "<?php echo $item;?>";
+            if(existe==false) ShowMessage(mensaje, correcto);
+        }
+    });
+    //Cuando la pagina haya cargado totalmente mostrar spinner
+    $(window).load(function() {
+        //$("#loader").fadeOut("slow");
+        //setTimeout(function () {
+        //    $("#loader").remove();
+        //}, 1000);
+    });
+
+    function ShowMessage(mensaje, correcto){
+        if (correcto){
+            swal('Operacion completada', mensaje , 'success');
+        }else{
+            swal('Operacion cancelada', mensaje + '. El registro ingresado ya existe, asegurese de que los codigos no se esten repitiendo.', 'error');
+        }
+    }
+
+    function confSubmit() {
+        var btnguardar = document.getElementById("guardar");
+        if (btnguardar != null) {
+            btnguardar.innerHTML = "<i class='fa fa-spinner fa-spin'></i> Guardando por favor espere";
+            btnguardar.disabled = true;
+        }
+        return true;
+    }
+
+    function eliminar(llave,ele,cont){
+        elemento = ele;
+        controlador = cont;
+        pk = llave;
+        swal({
+                title: 'Eliminar '+elemento,
+                text: '¿Esta seguro que desea eliminarlo?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No',
+                confirmButtonClass: 'confirm-class',
+                cancelButtonClass: 'cancel-class',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c='+controlador+'&a=eliminar&pk='+pk;
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+    
+    function ExisteUsername(){
+        swal({
+                title: 'Registrar Usuario',
+                text: 'El nombre de usuario ya existe',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                confirmButtonClass: 'confirm-class',
+                closeOnConfirm: true,
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c=usuario&a=nuevo';
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+    function ExisteCorreo(){
+        swal({
+                title: 'Registrar Usuario',
+                text: 'La direccion de correo ya existe',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                confirmButtonClass: 'confirm-class',
+                closeOnConfirm: true,
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c=usuario&a=nuevo';
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+    function ExisteTipo(){
+        swal({
+                title: 'Registrar Tipo de Usuario',
+                text: 'EL nombre del tipo de usuario ya existe',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                confirmButtonClass: 'confirm-class',
+                closeOnConfirm: true,
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c=tipo&a=nuevo';
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+
+    function ExisteDetalleGrupo(){
+        swal({
+                title: 'Agregar Parametro',
+                text: 'EL parametro ya esta agregado en este grupo',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                confirmButtonClass: 'confirm-class',
+                closeOnConfirm: true,
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c=grupo_parametro';
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+    //Inicializar reloj
+    $('.clockpicker').clockpicker()
+        .find('input').change(function(){
+            console.log(this.value);
+        });
+    var input = $('#single-input').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+</script>
 </body>
 </html>

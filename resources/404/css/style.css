@@ -1,0 +1,68 @@
+
+/*Author : www.binarytheme.com 2014
+Please Share us , if you like our work it will help us alot*/
+
+
+@import url('http://fonts.googleapis.com/css?family=Lato:400,300,700,900');
+
+body {
+	background: #1A325F;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+  
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: #fff;
+}
+
+h1 {
+    padding-top:80px;
+	font-size: 90px;
+    font-weight:700;
+    margin-bottom:30px;
+
+}
+h2 {
+	font-size: 40px;
+    font-weight:400;
+     margin-bottom:60px;
+}
+
+h3 {
+    font-size: 30px;
+	font-weight: 200;
+    margin-bottom:50px;
+    
+}
+
+
+
+#links a {
+    margin:3px;
+}
+
+#wrapper {
+	text-align: center;
+	padding: 50px 0;
+	background-position: center center;
+	min-height: 650px;
+	width: 100%;	
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+
+
