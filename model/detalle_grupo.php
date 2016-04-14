@@ -17,9 +17,9 @@ class Detalle_Grupo{
         try {
            return $this->pdo
          ->from('detalle_grupo de')
-         ->join('parametro p on de.fkparametro=p.pkparametro')
-         ->join('grupo_parametro g on de.fkgrupo=g.pkgrupo_parametro')
-         ->select('p.nombre as parametro,g.nombre as grupo,de.costo')      
+         ->join('ensayo p on de.fkensayo=p.pkensayo')
+         ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
+         ->select('p.nombre as ensayo,g.nombre as grupo,de.costo')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -29,8 +29,8 @@ class Detalle_Grupo{
         try {
            return $this->pdo
          ->from('detalle_grupo de')
-         ->join('parametro p on de.fkparametro=p.pkparametro')
-         ->join('grupo_parametro g on de.fkgrupo=g.pkgrupo_parametro')
+         ->join('ensayo p on de.fkensayo=p.pkensayo')
+         ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
          ->select('de.fkgrupo,SUM(de.costo) as total')
          ->groupBy('de.fkgrupo')      
          ->fetchAll();
@@ -54,7 +54,7 @@ class Detalle_Grupo{
           return $this->pdo
          ->from('detalle_grupo')
          ->select('detalle_grupo.*')
-         ->where('fkgrupo=? and fkparametro=?',$fkgrupo,$fkprametro)          
+         ->where('fkgrupo=? and fkensayo=?',$fkgrupo,$fkprametro)          
          ->fetch();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -66,7 +66,7 @@ class Detalle_Grupo{
       try 
         {
            $this->pdo->deleteFrom('detalle_grupo')
-                     ->where('fkparametro=? and fkgrupo=?', $datos['fkparametro'],$datos['fkgrupo'])
+                     ->where('fkensayo=? and fkgrupo=?', $datos['fkensayo'],$datos['fkgrupo'])
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());

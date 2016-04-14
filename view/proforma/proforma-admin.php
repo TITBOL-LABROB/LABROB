@@ -11,6 +11,7 @@
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
             <tr>
+                <th >Codigo</th> 
                 <th >Fecha</th>
                 <th >Grupo de Parametros</th>
                 <th >Nombre</th>
@@ -21,17 +22,22 @@
                 <th >Telefono Solicitante</th>
                 <th >Dias</th>
                 <th >Diriguido a:</th>
-               <th>Acciones</th>
+               <th style="width: 200px;">Acciones</th>
                 
             </tr>
         </thead>
         <tbody>
             <?php foreach ($proformas as $r): ?>
                 <tr>
+                    <td><?php echo $r->codigo_completo; ?></td>
                     <td><?php echo $r->fecha; ?></td>
                     <td><?php echo $r->grupo; ?></td>
                     <td><?php echo $r->nombre; ?></td>
-                    <td><?php if($r->cliente_natural="") echo $r->cliente_juridico; if($r->cliente_juridico="") echo $r->cliente_natural;?></td>
+                    <td><?php
+                     foreach ($clientes as $c )
+                     {
+                        if($c->pkcliente==$r->pkcliente) echo $c->nombre_cliente;
+                     } ?> </td>
                     <td><?php echo $r->persona_solicitante; ?></td>
                     <td><?php echo $r->correo_solicitante; ?></td>
                     <td><?php echo $r->institucion; ?></td>
@@ -39,8 +45,9 @@
                     <td><?php echo $r->dias; ?></td>
                     <td><?php echo $r->diriguido; ?></td>
                     <td>
-                          <a style="margin-right:8px;color: #263340;" href="?c=proforma&a=editar&id=<?php echo $r->pkproforma; ?>"><i class="fa fa-pencil" ></i>Editar</a>
-                          <a href="#" onclick="eliminar('<?php echo $r->pkproforma; ?>','<?php echo $r->nombre;?>','proforma')" style="color: darkred"><i class="fa fa-trash"></i> Eliminar</a>
+                          <a style="margin-right:8px;color: #263340;" href="?c=proforma&a=editar&id=<?php echo $r->pkproforma; ?>">Editar</a><i class="fa fa-pencil" ></i>
+                          <a style="margin-right:8px;color: #263;" href="?c=proforma&a=contrato&id=<?php echo $r->pkproforma; ?>"></i>Contrato</a><i class="fa fa-building" aria-hidden="true">
+                          <a href="#" onclick="eliminar('<?php echo $r->pkproforma; ?>','<?php echo $r->nombre;?>','proforma')" style="color: darkred"></i> Eliminar</a><i class="fa fa-trash">
                     </td>
                    
                 </tr>

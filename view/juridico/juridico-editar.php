@@ -29,6 +29,13 @@
                 <input type="text" name="direccion" class="form-control" value="<?php echo $juridico->direccion ?>"
                        placeholder="Ingrese su Direccion" required />
             </div>
+             <div class="form-group">
+               <label>Tipo de Cliente</label>
+               <select class="form-control" name="tipo_cliente" >
+                  <option value="Periodico" <?php if ('Periodico' == $juridico->tipo_cliente) echo "selected"; ?>>Periodico</option>
+                  <option value="Esporadico" <?php if ('Esporadico' == $juridico->tipo_cliente) echo "selected"; ?>>Esporadico</option>
+               </select>
+            </div>
             <div class="form-group">
                 <label>Fijo</label>
                 <input type="text" name="fijo" class="form-control"  value="<?php echo $juridico->fijo ?>"
@@ -68,6 +75,11 @@
                 <label>Fax</label>
                 <input type="text" name="fax" class="form-control"  value="<?php echo $juridico->fax ?>"
                        placeholder="Ingrese su Fax"  />
+            </div>
+             <div class="form-group">
+                <label>Descuento</label>
+                <input type="Decimal" name="descuento"  class="form-control"  value="<?php echo $juridico->descuento; ?>" 
+                       placeholder="Ingrese su Descuento Porcentual"  />
             </div>
         </div>
       

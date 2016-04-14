@@ -14,11 +14,13 @@
                 <th >CI</th>
                 <th >Nombre</th>
                 <th >Direccion</th>
+                <th >Tipo de Cliente</th>
                 <th >Contacto</th>
                 <th >Fijo</th>
                 <th >Celular</th>
                 <th >Correo</th>
                 <th >Fax</th>
+                <th >Descuento</th>
                 <th >Acciones</th>
                 
             </tr>
@@ -29,11 +31,13 @@
                     <td><?php echo $r->ci; ?></td>
                     <td><?php echo $r->nombre; ?></td>
                     <td><?php echo $r->direccion; ?></td>
+                    <td><?php echo $r->tipo_cliente; ?></td>
                     <td><?php echo $r->contacto; ?></td>
                     <td><?php echo $r->fijo; ?></td>
                     <td><?php echo $r->celular; ?></td>
                      <td><?php echo $r->correo; ?></td>
                       <td><?php echo $r->fax; ?></td>
+                      <td><?php echo $r->descuento; ?></td>
                     <td>
                           <a style="margin-right:8px;color: #000;" href="?c=natural&a=editar&id=<?php echo $r->pkcliente; ?>&ci=<?php echo $r->ci;?>" ><i class="fa fa-pencil"></i>Editar</a>
                           <a href="#" onclick="eliminar('<?php echo $r->pkcliente; ?>','<?php echo $r->nombre;?>','natural')" style="color: darkred"><i class="fa fa-trash"></i> Eliminar</a>

@@ -46,7 +46,7 @@
         <div class="col-md-6">     
             <div class="form-group">
                 <label>Correo del Solicitante</label>
-                <input type="text" name="correo_solicitante" class="form-control"  
+                <input type="email" name="correo_solicitante" class="form-control"  
                        placeholder="Ingrese el correo del solicitante" required />
             </div>
             <div class="form-group">

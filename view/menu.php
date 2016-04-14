@@ -159,13 +159,16 @@
                         <a href="#"><i class="fa fa-flask fa-fw fa-3x"></i> Analisis de Laboratorio<span class="fa arrow" style="margin-top: 20px"></span></a>
                         <ul class="nav nav-second-level">
                         <li>
-                                <a href="?c=laboratorio"><i class="fa fa-building fa-fw fa-2x"></i> Laboratorio</a>
+                                <a href="?c=area"><i class="fa fa-building fa-fw fa-2x"></i> Area</a>
                             </li>
                             <li>
-                                <a href="?c=grupo_parametro"><i class="fa fa-wrench fa-fw fa-2x"></i> Grupo de Parametros</a>
+                                <a href="?c=grupo_ensayo"><i class="fa fa-wrench fa-fw fa-2x"></i> Grupo de Ensayos</a>
                             </li>
                             <li>
-                                <a href="?c=parametro"><i class="fa fa-crop fa-fw fa-2x"></i> Parametros</a>
+                                <a href="?c=ensayo"><i class="fa fa-crop fa-fw fa-2x"></i> Ensayos</a>
+                            </li>
+                             <li>
+                                <a href="?c=metodo"><i class="fa fa-crop fa-fw fa-2x"></i> Metodos</a>
                             </li>
                             <li>
                                 <a href="?c=proforma"><i class="fa fa-crop fa-fw fa-2x"></i> Proforma</a>

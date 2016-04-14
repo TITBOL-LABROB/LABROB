@@ -33,11 +33,13 @@ class JuridicoController {
       
         $datoscliente = array(
             'contacto' => $_REQUEST['contacto'],
+            'tipo_cliente' => $_REQUEST['tipo_cliente'],
             'fijo' => $_REQUEST['fijo'],
             'celular' => $_REQUEST['celular'],
             'correo' => $_REQUEST['correo'],
             'fktipo_cliente'=>$_REQUEST['nit'],
             'fax' => $_REQUEST['fax'],
+            'descuento' => $_REQUEST['descuento']
         );
         $datosjuridico = array(
             'nit' => $_REQUEST['nit'],

@@ -14,6 +14,7 @@ if (isset($_REQUEST['item'])) {
     $item = $_REQUEST['item'];
     $bandera = 1;
 }
+
 if (isset($_REQUEST['tarea'])) {
     $tarea = $_REQUEST['tarea'];
     $bandera = 1;

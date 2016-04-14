@@ -99,7 +99,13 @@
                       ExisteDetalleGrupo();
                       existe=true;
                     }
-                    break;                
+                    break;
+                 case "detalle_proforma":
+                    if ("<?php echo $exito;?>" == "si") {
+                      ExisteDetalleProforma();
+                      existe=true;
+                    }
+                    break;                       
             }
             mensaje = mensaje + "<?php echo $item;?>";
             if(existe==false) ShowMessage(mensaje, correcto);
@@ -150,7 +156,7 @@
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    var ubicacion = '?c='+controlador+'&a=eliminar&pk='+pk;
+                    var ubicacion = '?c='+controlador+'&a=eliminar&id='+pk;
                     window.location = ubicacion;
                 }
             }
@@ -214,8 +220,8 @@
 
     function ExisteDetalleGrupo(){
         swal({
-                title: 'Agregar Parametro',
-                text: 'EL parametro ya esta agregado en este grupo',
+                title: 'Agregar Ensayo',
+                text: 'EL Ensayo ya esta agregado en este grupo',
                 type: 'warning',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Si',
@@ -224,7 +230,25 @@
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    var ubicacion = '?c=grupo_parametro';
+                    var ubicacion = '?c=grupo_ensayo';
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+    function ExisteDetalleProforma(){
+        swal({
+                title: 'Agregar Parametro',
+                text: 'EL parametro ya esta agregado en esta proforma',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                confirmButtonClass: 'confirm-class',
+                closeOnConfirm: true,
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c=proforma';
                     window.location = ubicacion;
                 }
             }

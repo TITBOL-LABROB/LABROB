@@ -16,36 +16,44 @@ class Proforma {
             die($e->getMessage());
         }
     }
-///////ll
+
     public function Listar() {
        try 
         {
-
-            $sql = $this->pdo2->prepare("SELECT distinct p.,CAST(CASE
-             WHEN (c.fktipo_cliente=n.ci) 
-             THEN (n.nombre)
-  
-             WHEN (c.fktipo_cliente=j.nit) 
-             THEN (j.nombre)              
-             end  as char)as nombre_cliente
-             FROM cliente c,proforma p, cliente_natural n,cliente_juridico j,grupo_parametro g
-             where c.estado=1 and c.fktipo_cliente=n.ci or j.nit=c.fktipo_cliente
-             group by c.pkcliente,c.contacto,c.fijo,c.celular,c.correo,c.fax,n.nombre,j.nombre");
-            $sql->execute();
-            return $sql->fetchAll(PDO::FETCH_OBJ);
+     return $this->pdo->from('proforma p')
+                      ->Join('cliente c on p.fkcliente=c.pkcliente')
+                      ->Join('grupo_parametro g on p.fkgrupo=g.pkgrupo_parametro')
+                      ->select(" CONCAT('P0',p.codigo)as codigo_completo, p.*,g.nombre as grupo,c.pkcliente")
+                      ->where('p.estado=1')  
+                      ->fetchAll();
 
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
+
     public function Registrar($datos)
     {
       try 
         {
            $this->pdo->insertInto('proforma', $datos)->execute();
+           return $this->GetLatId();
         } catch (Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    public function GetLatId()
+    {
+     try {
+          return $this->pdo->from('proforma p')
+                     ->select('MAX(p.pkproforma) as id')
+                     ->where('p.estado',1)
+                     ->fetch();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+
     }
     public function Editar($datos)
     {
@@ -73,6 +81,20 @@ class Proforma {
         }
     }
 
+    public function GetLast() {
+       try 
+        {
+     return $this->pdo->from('proforma p')
+                      ->select('p.*')
+                      ->where('p.estado=1') 
+                      ->orderBy('p.pkproforma desc') 
+                      ->limit('1')
+                      ->fetch();
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
     public function Baja($id)
     {
       try 

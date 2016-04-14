@@ -14,6 +14,7 @@
                 <th>Nit</th>
                 <th>Nombre</th>
                 <th >Direccion</th>
+                <th >Tipo de Cliente</th>
                 <th >Representante</th>
                 <th>CI Repre.</th>
 
@@ -22,6 +23,7 @@
                 <th>Celular</th>
                 <th>Correo</th>
                 <th>Fax</th>
+                <th>Descuento</th>
                 <th>Acciones</th>
                 
             </tr>
@@ -32,6 +34,7 @@
                     <td><?php echo $r->nit; ?></td>
                     <td><?php echo $r->nombre; ?></td>
                     <td><?php echo $r->direccion; ?></td>
+                    <td><?php echo $r->tipo_cliente; ?></td>
                     <td><?php echo $r->representante; ?></td>
                     <td><?php echo $r->ci_representante; ?></td>
                     <td><?php echo $r->contacto; ?></td>
@@ -39,6 +42,7 @@
                     <td><?php echo $r->celular; ?></td>
                      <td><?php echo $r->correo; ?></td>
                       <td><?php echo $r->fax; ?></td>
+                      <td><?php echo $r->descuento; ?></td>
                     <td>
                           <a style="margin-right:8px;color: #263340;" href="?c=juridico&a=editar&id=<?php echo $r->pkcliente; ?>&ci=<?php echo $r->nit;?>" ><i class="fa fa-pencil"></i>Editar</a>
                           <a href="#" onclick="eliminar('<?php echo $r->pkcliente; ?>','<?php echo $r->nombre;?>','juridico')" style="color: darkred"><i class="fa fa-trash"></i> Eliminar</a>
