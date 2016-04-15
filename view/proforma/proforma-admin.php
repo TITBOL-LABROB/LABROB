@@ -13,7 +13,6 @@
             <tr>
                 <th >Codigo</th> 
                 <th >Fecha</th>
-                <th >Grupo de Parametros</th>
                 <th >Nombre</th>
                 <th >Cliente</th>
                 <th >Solicitante</th>
@@ -22,7 +21,7 @@
                 <th >Telefono Solicitante</th>
                 <th >Dias</th>
                 <th >Diriguido a:</th>
-               <th style="width: 200px;">Acciones</th>
+               <th style="width: 300px;">Acciones          </th>
                 
             </tr>
         </thead>
@@ -31,7 +30,6 @@
                 <tr>
                     <td><?php echo $r->codigo_completo; ?></td>
                     <td><?php echo $r->fecha; ?></td>
-                    <td><?php echo $r->grupo; ?></td>
                     <td><?php echo $r->nombre; ?></td>
                     <td><?php
                      foreach ($clientes as $c )
@@ -45,7 +43,7 @@
                     <td><?php echo $r->dias; ?></td>
                     <td><?php echo $r->diriguido; ?></td>
                     <td>
-                          <a style="margin-right:8px;color: #263340;" href="?c=proforma&a=editar&id=<?php echo $r->pkproforma; ?>">Editar</a><i class="fa fa-pencil" ></i>
+                          <a style="margin-right:8px;color: #263340;" href="?c=proforma&a=editar&id=<?php echo $r->pkproforma; ?>">Agregar Ensayos</a><i class="fa fa-plus" ></i>
                           <a style="margin-right:8px;color: #263;" href="?c=proforma&a=contrato&id=<?php echo $r->pkproforma; ?>"></i>Contrato</a><i class="fa fa-building" aria-hidden="true">
                           <a href="#" onclick="eliminar('<?php echo $r->pkproforma; ?>','<?php echo $r->nombre;?>','proforma')" style="color: darkred"></i> Eliminar</a><i class="fa fa-trash">
                     </td>

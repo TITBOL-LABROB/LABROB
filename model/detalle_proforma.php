@@ -17,9 +17,9 @@ class detalle_proforma{
         try {
            return $this->pdo
          ->from('detalle_proforma de')
-         ->join('parametro p on de.fkparametro=p.pkparametro')
+         ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('p.nombre as parametro,pr.nombre as proforma,de.costo')      
+         ->select('p.nombre as ensayo,pr.nombre as proforma,de.costo')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -29,7 +29,7 @@ class detalle_proforma{
         try {
            return $this->pdo
          ->from('detalle_proforma de')
-         ->join('parametro p on de.fkparametro=p.pkparametro')
+         ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
          ->select('de.fkproforma,SUM(de.costo) as total')
          ->groupBy('de.fkproforma')      
@@ -54,7 +54,7 @@ class detalle_proforma{
           return $this->pdo
          ->from('detalle_proforma')
          ->select('detalle_proforma.*')
-         ->where('fkproforma=? and fkparametro=?',$fkproforma,$fkprametro)          
+         ->where('fkproforma=? and fkensayo=?',$fkproforma,$fkprametro)          
          ->fetch();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -66,7 +66,7 @@ class detalle_proforma{
       try 
         {
            $this->pdo->deleteFrom('detalle_proforma')
-                     ->where('fkparametro=? and fkproforma=?', $datos['fkparametro'],$datos['fkproforma'])
+                     ->where('fkensayo=? and fkproforma=?', $datos['fkensayo'],$datos['fkproforma'])
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());

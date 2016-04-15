@@ -65,6 +65,6 @@ class Tipo_EnsayoController {
             header("Location: ?c=tipo_ensayo&item=tipo_ensayo de usuario&ttipo_ensayo=eliminar&exito=si");
         }
     }
-  //go sms pro-Temas,Emji,Gif
+  //go sms pro-Temas,Emji,Gif  codigo:DP30286
 }
 ?>

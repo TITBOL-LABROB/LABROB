@@ -17,14 +17,6 @@
                        placeholder="Ingrese el metodo" required />
             </div>
             <div class="form-group">
-                <label>Grupo de Parametro</label>
-                <select class="form-control" name="pkgrupo" >
-                    <?php foreach ($grupos as $g): ?>
-                        <option value="<?php echo $g->pkgrupo_parametro; ?>" ><?php echo $g->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group">
                 <label>Nombre</label>
                 <input type="text" name="nombre" class="form-control"  
                        placeholder="Ingrese el Nombre" required />

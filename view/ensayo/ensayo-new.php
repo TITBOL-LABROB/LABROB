@@ -1,5 +1,4 @@
 <script >
-
 $(document).ready(function() {
      var $cmbArea = $("#pkarea");
      $cmbArea.change(function () {

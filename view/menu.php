@@ -168,24 +168,27 @@
                                 <a href="?c=tipo_ensayo"><i class="fa fa-crop fa-fw fa-2x"></i>Tipo de Ensayo</a>
                             </li>
                             <li>
-                                <a href="?c=ensayo"><i class="fa fa-crop fa-fw fa-2x"></i> Ensayo</a>
+                                <a href="?c=ensayo"><i class="fa fa-flask fa-fw fa-2x"></i> Ensayo</a>
                             </li>
                              <li>
                                 <a href="?c=metodo"><i class="fa fa-crop fa-fw fa-2x"></i> Metodo</a>
                             </li>
                             <li>
-                                <a href="?c=proforma"><i class="fa fa-crop fa-fw fa-2x"></i> Proforma</a>
+                                <a href="?c=proforma"><i class="fa fa-file-archive-o fa-fw fa-2x" aria-hidden="true"></i> Proforma</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-user fa-fw fa-3x"></i> Clientes<span class="fa arrow" style="margin-top: 20px"></span></a>
+                        <a href="#"><i class="fa fa-user fa-fw fa-3x"></i> Entidades<span class="fa arrow" style="margin-top: 20px"></span></a>
                         <ul class="nav nav-second-level">
                          <li>
                                 <a href="?c=natural"><i class="fa fa-child fa-fw fa-2x"></i>Cliente Natural</a>
                             </li>
                             <li>
                                 <a href="?c=juridico"><i class="fa fa-child fa-fw fa-2x"></i> Cliente Juridico</a>
+                            </li>
+                            <li>
+                                <a href="?c=institucion"><i class="fa fa-hospital-o fa-fw fa-2x"></i> Institucion</a>
                             </li>
                         </ul>
                     </li>

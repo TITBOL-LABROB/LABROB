@@ -1,9 +1,9 @@
 <?php
  require_once 'view/proforma/proforma.view.php';
 require_once 'model/proforma.php';
-require_once 'model/grupo_parametro.php';
+require_once 'model/grupo_ensayo.php';
 require_once 'model/cliente.php';
-require_once 'model/parametro.php';
+require_once 'model/ensayo.php';
 require_once 'model/detalle_proforma.php';
 
 class ProformaController {
@@ -12,15 +12,15 @@ class ProformaController {
     private $vista;
     private $grupo;
     private $cliente;
-    private $parametro;
+    private $ensayo;
     private $detalle;
 
     public function __CONSTRUCT() {
         $this->model = new Proforma();
         $this->vista = new ProformaView();
-        $this->grupo=new grupo_parametro();
+        $this->grupo=new grupo_ensayo();
         $this->cliente=new Cliente();
-        $this->parametro=new parametro();
+        $this->ensayo=new Ensayo();
         $this->detalle=new detalle_proforma();
     }
 
@@ -38,11 +38,11 @@ class ProformaController {
 
     public function editar() {
         $proformas = $this->model->Obtener($_REQUEST['id']);
-        $parametros=$this->parametro->Listar();
+        $ensayos=$this->ensayo->Listar();
         $clientes = $this->cliente->Listar();
         $detalle = $this->detalle->Listar();  
         $precios=$this->detalle->listaPrecio();      
-        $this->vista->Detalle($proformas,$clientes,$detalle,$parametros,$precios);
+        $this->vista->Detalle($proformas,$clientes,$detalle,$ensayos,$precios);
     }
     
     public function contrato() 
@@ -51,7 +51,7 @@ class ProformaController {
         $clientes = $this->cliente->Listar();
         $detalle = $this->detalle->Listar();  
         $precios=$this->detalle->listaPrecio();      
-        $this->vista->Contrato($proformas,$clientes,$detalle,$parametros,$precios);
+        $this->vista->Contrato($proformas,$clientes,$detalle,$ensayos,$precios);
     }
 
     public function Guardar() {
@@ -104,40 +104,40 @@ class ProformaController {
         return $num;
      }
      
-     public function AgregarParametro(){
-        $parametro=$this->parametro->Obtener($_REQUEST['pkparametro']);
+     public function Agregarensayo(){
+        $ensayo=$this->ensayo->Obtener($_REQUEST['pkensayo']);
         $pkproforma=($_REQUEST['pkproforma']);
         $datos = array(
             'fkproforma' => $_REQUEST['pkproforma'],
-            'fkparametro' => $_REQUEST['pkparametro'],
-            'costo' => $parametro->costo
+            'fkensayo' => $_REQUEST['pkensayo'],
+            'costo' => $ensayo->costo
         );
 
-        if($this->detalle->Existedetalle_proforma($datos['fkproforma'],$datos['fkparametro'])=="")
+        if($this->detalle->Existedetalle_proforma($datos['fkproforma'],$datos['fkensayo'])=="")
         {
             $this->detalle->Registrar($datos);
-            header("Location: ?c=proforma&a=editar&id=$pkproforma&item=parametro para la proforma&tarea=agregar&exito=si");
+            header("Location: ?c=proforma&a=editar&id=$pkproforma&item=ensayo para la proforma&tarea=agregar&exito=si");
         }else{
-            header("Location: ?c=proforma&a=editar&id=$pkproforma&item=parametro para la proforma&tarea=agregar&exito=no"); exit;
+            header("Location: ?c=proforma&a=editar&id=$pkproforma&item=ensayo para la proforma&tarea=agregar&exito=no"); exit;
         }
 
        /* if ($exito=='si') {
             $tipo_servicio = $this->model->Obtener($_REQUEST['pktipo_servicio']);
-            $parametro = $this->parametro->Obtener($_REQUEST['pkparametro']);
-            $DescripcionBitacora = 'se agrego el parametro '.$parametro->nombre.' al tipo de servicio '.$tipo_servicio->nombre;
+            $ensayo = $this->ensayo->Obtener($_REQUEST['pkensayo']);
+            $DescripcionBitacora = 'se agrego el ensayo '.$ensayo->nombre.' al tipo de servicio '.$tipo_servicio->nombre;
             $this->bitacora->GuardarBitacora($DescripcionBitacora);
         }*/
         
     }
 
-    public function QuitarParametro(){
+    public function Quitarensayo(){
          $pkproforma=($_REQUEST['pkproforma']);
         $datos = array(
             'fkproforma' => $_REQUEST['pkproforma'],
-            'fkparametro' => $_REQUEST['pkparametro']
+            'fkensayo' => $_REQUEST['pkensayo']
         );
         $this->detalle->Eliminar($datos);
-        header("Location: ?c=proforma&a=editar&id=$pkproforma&item=parametro de la  proforma&tarea=eliminar&exito=si");
+        header("Location: ?c=proforma&a=editar&id=$pkproforma&item=ensayo de la  proforma&tarea=eliminar&exito=si");
     }
 
     public function GuardarCambios() {

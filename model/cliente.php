@@ -63,6 +63,18 @@ class Cliente {
             die($e->getMessage());
         }
     }
+    public function Listar2($pkinstitucion) {
+        try 
+        {
+           return $this->pdo->from('cliente c')
+         ->Join('cliente_juridico j on c.fktipo_cliente=j.nit') 
+         ->select('c.*,j.*')
+         ->where("j.nombre like '%$pkinstitucion%'")          
+         ->fetchAll();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
     public function Registrar($datos)
     {
       try 

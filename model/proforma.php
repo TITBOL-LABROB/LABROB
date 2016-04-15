@@ -21,9 +21,9 @@ class Proforma {
        try 
         {
      return $this->pdo->from('proforma p')
+                      ->Join('institucion i on p.fkinstitucion=i.pkinstitucion')
                       ->Join('cliente c on p.fkcliente=c.pkcliente')
-                      ->Join('grupo_parametro g on p.fkgrupo=g.pkgrupo_parametro')
-                      ->select(" CONCAT('P0',p.codigo)as codigo_completo, p.*,g.nombre as grupo,c.pkcliente")
+                      ->select(" CONCAT('P0',p.codigo)as codigo_completo, p.*,c.pkcliente,i.nombre as institucion")
                       ->where('p.estado=1')  
                       ->fetchAll();
 
