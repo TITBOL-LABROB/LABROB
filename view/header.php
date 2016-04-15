@@ -38,6 +38,7 @@ if (isset($_REQUEST['exito'])) {
     <link href="resources/css/loader.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   
     <!-- Multi Menu -->
     <link href="resources/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <!-- Tablas Personalizables -->

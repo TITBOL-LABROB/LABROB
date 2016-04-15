@@ -19,7 +19,7 @@
                             <div id="<?php echo $r->pkgrupo_ensayo; ?>" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div class="btn-group">
-                                        <select class="parcmb" id="parcmb<?php echo $r->pkgrupo_ensayo; ?>">
+                                        <select  class="parcmb" id="parcmb<?php echo $r->pkgrupo_ensayo; ?>">
                                             <?php foreach ($ensayos as $p): ?>
                                                 <option value='<?php echo $p->pkensayo;?>'><?php echo $p->nombre;?></option>
                                             <?php endforeach ?>

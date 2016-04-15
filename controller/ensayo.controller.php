@@ -1,8 +1,9 @@
 <?php
  require_once 'view/ensayo/ensayo.view.php';
 require_once 'model/ensayo.php';
+require_once 'model/tipo_ensayo.php';
 require_once 'model/medida.php';
-require_once 'model/matriz.php';
+require_once 'model/metodo.php';
 require_once 'model/area.php';
 
 class EnsayoController {
@@ -10,15 +11,17 @@ class EnsayoController {
     private $model;
     private $vista;
     private $medida;
-    private $matriz;
+    private $metodo;
     private $area;
+    private $tipo_ensayo;
 
     public function __CONSTRUCT() {
         $this->model = new ensayo();
         $this->vista = new ensayoView();
         $this->medida=new Unidad_Medida();
-        $this->matriz=new Matriz();
+        $this->metodo=new Metodo();
         $this->area=new Area();
+        $this->tipo_ensayo=new Tipo_Ensayo();
     }
 
     public function Index() {
@@ -28,17 +31,19 @@ class EnsayoController {
 
     public function Nuevo() {
          $medidas=$this->medida->Listar();
-         $matrices=$this->matriz->Listar();
+         $metodos=$this->metodo->Listar();
+         $tipos=$this->tipo_ensayo->Listar();
          $areas=$this->area->Listar();
-        $this->vista->Nuevo($medidas,$matrices,$areas);
+        $this->vista->Nuevo($medidas,$metodos,$areas,$tipos);
     }
 
     public function Editar() {
         $ensayo = $this->model->Obtener($_REQUEST['id']);
         $medidas=$this->medida->Listar();
-        $matrices=$this->matriz->Listar();
+        $metodos=$this->metodo->Listar();
         $areas=$this->area->Listar();
-        $this->vista->Editar($ensayo,$medidas,$matrices,$areas);
+        $tipos=$this->tipo_ensayo->Listar();
+        $this->vista->Editar($ensayo,$medidas,$metodos,$areas,$tipos);
     }
 
     public function Guardar() {
@@ -46,16 +51,16 @@ class EnsayoController {
         $datos = array(
             'nombre' => $_REQUEST['nombre'],
             'fkunidad' => $_REQUEST['pkunidad'],
-            'metodo' => $_REQUEST['metodo'],
-            'limite_cuantificacion' => $_REQUEST['limite_cuantificable'],
-            'limite_detectable' => $_REQUEST['limite_detectable'],
-            'limite_admisible' => $_REQUEST['limite_admisible'],
+            'fkmetodo' => $_REQUEST['fkmetodo'],
+            'rango_maximo' => $_REQUEST['rango_maximo'],
+            'rango_minimo' => $_REQUEST['rango_minimo'],
+            'limite_permitible' => $_REQUEST['limite_permitible'],
+            'normas' => $_REQUEST['normas'],
             'fkarea' => $_REQUEST['pkarea'],
-            'fkmatriz' => $_REQUEST['pkmatriz'],
+            'fktipo_ensayo' => $_REQUEST['fktipo_ensayo'],
             'costo' => $_REQUEST['costo'],
             'moneda' => $_REQUEST['moneda'],
         ); 
-
         $this->model->Registrar($datos);
         header("Location: ?c=ensayo&item=ensayo&tarea=agregar&exito=si");
     }
@@ -63,22 +68,18 @@ class EnsayoController {
       
         $datos = array(
             'pkensayo' => $_REQUEST['pkensayo'],
-            'nombre' => $_REQUEST['nombre'],
             'fkunidad' => $_REQUEST['pkunidad'],
-            'metodo' => $_REQUEST['metodo'],
-            'limite_cuantificacion' => $_REQUEST['limite_cuantificable'],
-            'limite_detectable' => $_REQUEST['limite_detectable'],
-            'limite_admisible' => $_REQUEST['limite_admisible'],
+            'fkmetodo' => $_REQUEST['fkmetodo'],
+            'rango_maximo' => $_REQUEST['rango_maximo'],
+            'rango_minimo' => $_REQUEST['rango_minimo'],
+            'limite_permitible' => $_REQUEST['limite_permitible'],
+            'normas' => $_REQUEST['normas'],
             'fkarea' => $_REQUEST['pkarea'],
-            'fkmatriz' => $_REQUEST['pkmatriz'],
+            'fktipo_ensayo' => $_REQUEST['fktipo_ensayo'],
             'costo' => $_REQUEST['costo'],
             'moneda' => $_REQUEST['moneda'],
         );
-           
-
             $pkensayo = $this->model->Editar($datos);
-           
-
         header("Location: ?c=ensayo&item=ensayo&tarea=modificar&exito=si");
     }
 

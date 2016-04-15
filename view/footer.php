@@ -2,7 +2,8 @@
 </div>
 <!-- JavaScript bootstrap -->
 <script src="resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
+ <!--Inputs type add-->
+    <script src="resources/bower_components/bootstrap/bootstrap-acknowledgeinput.min.js" ></script>
 <!-- JavaScript para multimenu -->
 <script src="resources/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
@@ -265,6 +266,8 @@
         autoclose: true,
         'default': 'now'
     });
+
+    
 </script>
 </body>
 </html>

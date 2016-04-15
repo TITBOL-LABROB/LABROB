@@ -3,7 +3,7 @@
 </h1>
 
 <ol class="breadcrumb">
-    <li><a href="?c=usuario" style="color: #263340;>Usuario</a></li>
+    <li><a href="?c=usuario" style="color: #263340;">Usuario</a></li>
     <li class="active"><?php echo $usuario->pkusuario != null ? $usuario->nombre : 'Nuevo Registro'; ?></li>
 </ol>
 <form  action="?c=usuario&a=guardarcambios" method="post" autocomplete="off" >

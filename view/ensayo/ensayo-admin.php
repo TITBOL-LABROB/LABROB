@@ -14,11 +14,11 @@
                 <th style="width:150px;">Nombre</th>
                 <th style="width:50px;">U. Medida</th>
                 <th style="width:180px;" >Metodo</th>
-                <th style="width:180px; ">Limite Cuantificable</th>
-                <th style="width:180px; ">Limite Detectable</th>
-                <th style="width:180px; ">Limite Admisible</th>
+                <th style="width:180px; ">Rango Maximo</th>
+                <th style="width:180px; ">Rango Minimo</th>
+                <th style="width:180px; ">Limite Permitible</th>
                 <th style="width:180px; ">Area</th>
-                <th style="width:180px; ">Matriz</th>
+                <th style="width:180px; ">Metodo</th>
                 <th style="width:50px;">Costo</th>
                 <th style="width:100px;">Moneda</th>
                <th>Acciones</th>
@@ -31,11 +31,11 @@
                     <td><?php echo $r->nombre; ?></td>
                     <td><?php echo $r->medida; ?></td>
                     <td><?php echo $r->metodo; ?></td>
-                    <td><?php echo $r->limite_cuantificacion; ?></td>
-                    <td><?php echo $r->limite_detectable; ?></td>
-                    <td><?php echo $r->limite_admisible; ?></td>
+                    <td><?php echo $r->rango_maximo; ?></td>
+                    <td><?php echo $r->rango_minimo; ?></td>
+                    <td><?php echo $r->limite_permitible; ?></td>
                     <td><?php echo $r->area; ?></td>
-                    <td><?php echo $r->matriz; ?></td>
+                    <td><?php echo $r->metodo; ?></td>
                     <td><?php echo $r->costo; ?></td>
                     <td><?php echo $r->moneda; ?></td>
                     <td>

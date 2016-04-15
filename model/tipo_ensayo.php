@@ -1,7 +1,7 @@
 <?php
  require_once 'singleton/database.php';
 
-class grupo_ensayo {
+class Tipo_Ensayo {
 
     private $pdo;
 
@@ -16,9 +16,21 @@ class grupo_ensayo {
     public function Listar() {
         try {
            return $this->pdo
-         ->from('grupo_ensayo')
-         ->select('grupo_ensayo.*')
-         ->where('estado=1')          
+         ->from('tipo_ensayo t')
+         ->Join('area a on t.fkarea=a.pkarea')
+         ->select('t.*,a.nombre as area')
+         ->where('t.estado=1')          
+         ->fetchAll();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function Listar_por_Area($pkarea) {
+        try {
+           return $this->pdo
+         ->from('tipo_ensayo t')
+         ->select('t.*')
+         ->where('t.fkarea',$pkarea)          
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -27,7 +39,7 @@ class grupo_ensayo {
     public function Registrar($datos)
     {
          try {
-           $this->pdo->insertInto('grupo_ensayo', $datos)->execute();
+           $this->pdo->insertInto('tipo_ensayo', $datos)->execute();
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -35,9 +47,9 @@ class grupo_ensayo {
     public function Editar($datos)
     {
          try {
-           $this->pdo->update('grupo_ensayo')
+           $this->pdo->update('tipo_ensayo')
                      ->set($datos)
-                     ->where('pkgrupo_ensayo', $datos['pkgrupo_ensayo'])
+                     ->where('pktipo_ensayo', $datos['pktipo_ensayo'])
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -49,21 +61,21 @@ class grupo_ensayo {
       try 
         {
            return $this->pdo
-         ->from('grupo_ensayo')
-         ->select('grupo_ensayo.*')
-         ->where('pkgrupo_ensayo=?',$id)          
+         ->from('tipo_ensayo')
+         ->select('tipo_ensayo.*')
+         ->where('pktipo_ensayo=?',$id)          
          ->fetch();
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
-    public function Existegrupo_ensayo($nombre)
+    public function Existetipo_ensayo($nombre)
     {
        try 
         {
           return $this->pdo
-         ->from('grupo_ensayo')
-         ->select('grupo_ensayo.*')
+         ->from('tipo_ensayo')
+         ->select('tipo_ensayo.*')
          ->where('nombre=?',$nombre)          
          ->fetch();
         } catch (Exception $e) {
@@ -75,9 +87,9 @@ class grupo_ensayo {
     {
       try 
         {
-           $this->pdo->update('grupo_ensayo')
+           $this->pdo->update('tipo_ensayo')
                      ->set('estado',0)
-                     ->where('pkgrupo_ensayo', $id)
+                     ->where('pktipo_ensayo', $id)
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());

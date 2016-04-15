@@ -165,10 +165,13 @@
                                 <a href="?c=grupo_ensayo"><i class="fa fa-wrench fa-fw fa-2x"></i> Grupo de Ensayos</a>
                             </li>
                             <li>
-                                <a href="?c=ensayo"><i class="fa fa-crop fa-fw fa-2x"></i> Ensayos</a>
+                                <a href="?c=tipo_ensayo"><i class="fa fa-crop fa-fw fa-2x"></i>Tipo de Ensayo</a>
+                            </li>
+                            <li>
+                                <a href="?c=ensayo"><i class="fa fa-crop fa-fw fa-2x"></i> Ensayo</a>
                             </li>
                              <li>
-                                <a href="?c=metodo"><i class="fa fa-crop fa-fw fa-2x"></i> Metodos</a>
+                                <a href="?c=metodo"><i class="fa fa-crop fa-fw fa-2x"></i> Metodo</a>
                             </li>
                             <li>
                                 <a href="?c=proforma"><i class="fa fa-crop fa-fw fa-2x"></i> Proforma</a>

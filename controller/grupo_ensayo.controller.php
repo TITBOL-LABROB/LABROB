@@ -46,7 +46,8 @@ class Grupo_ensayoController {
       
         $datos = array(
             'nombre' => $_REQUEST['nombre'],
-            'observacion' => $_REQUEST['observacion']
+            'observacion' => $_REQUEST['observacion'],
+            'costo' => $_REQUEST['costo']
         );
 
         if($this->model->Existegrupo_ensayo($datos['nombre'])!="")
@@ -64,7 +65,8 @@ class Grupo_ensayoController {
         $datos = array(
             'pkgrupo_ensayo'=> $_REQUEST['pkgrupo_ensayo'],
             'nombre' => $_REQUEST['nombre'],
-            'observacion' => $_REQUEST['observacion']
+            'observacion' => $_REQUEST['observacion'],
+            'costo' => $_REQUEST['costo']
         );        
         /*if($this->model->Existegrupo_ensayo($datos['nombre'])!="")
           {

@@ -25,6 +25,17 @@
     </div>
     <div class="row">
         <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Costo</label>
+                <input type="text" name="costo" class="form-control" placeholder="Ingrese el costo" value="<?php echo $grupo_ensayo->costo; ?>" required />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
         
         </div>
         <div class="col-md-6">
