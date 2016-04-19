@@ -1,9 +1,9 @@
-<h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Matriz</h1>
+<h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Grupo de Ensayo</h1>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <a class="btn btn-primary" href="?c=grupo_ensayo&a=nuevo"><i class="fa fa-plus"></i> Nueva Matriz</a>
+                <a class="btn btn-primary" href="?c=grupo_ensayo&a=nuevo"><i class="fa fa-plus"></i> Nuevo Grupo de Ensayo</a>
             </div>
             <div class="panel-body" style="overflow: scroll; height: 450px">
                 <div class="panel-group" id="accordion">
