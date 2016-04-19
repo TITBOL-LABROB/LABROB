@@ -1,9 +1,9 @@
 <h1 class="page-header">
-    <?php echo 'Nueva Matriz'; ?>
+    <?php echo 'Nuevo Grupo de Ensayo'; ?>
 </h1>
 
 <ol class="breadcrumb">
-    <li><a href="?c=grupo_ensayo " style="color: #263340";>Matriz</a></li>
+    <li><a href="?c=grupo_ensayo " style="color: #263340";>Grupo de Ensayo</a></li>
     <li >Nuevo Registro</li>
 </ol>
 
@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre" required />
+                <input type="text" name="nombre" class="form-control" placeholder="Ingrese el Nombre" required />
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Costo</label>
-                <input type="text" name="costo" class="form-control" placeholder="Ingrese el costo" required />
+                <input type="text" name="costo" class="form-control" placeholder="Ingrese el Costo" required />
             </div>
         </div>
     </div>

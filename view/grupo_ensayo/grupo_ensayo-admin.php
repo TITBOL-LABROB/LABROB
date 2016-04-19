@@ -1,4 +1,4 @@
-<h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Grupo de Ensayo</h1>
+<h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Grupo Ensayo</h1>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -54,8 +54,8 @@
                                             <tr>
                                                 <td colspan="5">
                                                     <?php foreach ($precios as $pr): ?>
-                                                        <?php if ($pr->fkgrupo == $r->pkgrupo_ensayo){ ?>
-                                                            <label style="color: #800000; font-size: 20px">Precio total: <?php echo $pr->total; ?></label>
+                                                        <?php if ($pr->pkgrupo_ensayo == $r->pkgrupo_ensayo){ ?>
+                                                            <label style="color: #800000; font-size: 20px">Precio total: <?php echo $pr->costo; ?></label>
                                                         <?php } ?>
                                                     <?php endforeach ?>
                                                 </td>
@@ -76,7 +76,7 @@
 <script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.parcmb').multiselect({
+       $('.parcmb').multiselect({
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
             filterPlaceholder: 'Buscar'

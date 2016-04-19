@@ -4,22 +4,36 @@
 
 <ol class="breadcrumb">
     <li><a href="?c=matriz" style="color: #263340";>Matriz</a></li>
-    <li class="active"><?php echo $matriz->pkmatriz != null ? $matriz->pkmatriz : 'Nuevo Registro'; ?></li>
+    <li class="active">Editar</li>
 </ol>
 
-<form id="frm-producto" action="?c=matriz&a=guardarcambios" 
+<form id="frm-producto" action="?c=matriz&a=guardar_cambios" autocomplete="off" 
       method="post"  enctype="multipart/form-data"   >
     <input type="hidden" name="pkmatriz" value="<?php echo $matriz->pkmatriz; ?>" />
    
-    <div class="form-group">
-        <label>Nombre</label>
-        <input type="text"  name="nombre" value="<?php echo $matriz->nombre; ?>" 
-               class="form-control" placeholder="Ingrese el nombre" required />
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre"
+                value="<?php echo $matriz->nombre ?>" required />
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Descripcion</label>
-        <input type="text" name="descripcion" value="<?php echo $matriz->descripcion; ?>" 
-               class="form-control"  placeholder="Ingrese la Descripcion" data-validacion-matriz="requerido|min:3" />
+    <div class="row">
+        <div class="col-md-3">
+        
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Observacion</label>
+                <textarea class="form-control" placeholder="Ingrese la Observacion" name="descripcion"
+                 rows="3" style="resize: none;"><?php echo $matriz->descripcion ?></textarea>
+            </div>
+        </div>
     </div>
    
 

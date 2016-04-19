@@ -3,8 +3,8 @@
 </h1>
 
 <ol class="breadcrumb">
-    <li><a href="?c=grupo_ensayo" style="color: #263340";>Matriz</a></li>
-    <li class="active"><?php echo $grupo_ensayo->pkgrupo_ensayo != null ? $grupo_ensayo->pkgrupo_ensayo : 'Nuevo Registro'; ?></li>
+    <li><a href="?c=grupo_ensayo" style="color: #263340";>Grupo Ensayo</a></li>
+    <li class="active">Editar</li>
 </ol>
 
 <form id="frm-producto" action="?c=grupo_ensayo&a=guardarcambios" 
@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre" 
+                <input type="text" name="nombre" class="form-control" placeholder="Ingrese el nombre"
                 value="<?php echo $grupo_ensayo->nombre ?>" required />
             </div>
         </div>

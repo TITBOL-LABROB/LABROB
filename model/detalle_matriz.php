@@ -1,7 +1,7 @@
 <?php
  require_once 'singleton/database.php';
 
-class Detalle_Grupo{
+class Detalle_Matriz{
 
     private $pdo;
 
@@ -16,10 +16,10 @@ class Detalle_Grupo{
     public function Listar() {
         try {
            return $this->pdo
-         ->from('detalle_grupo de')
-         ->join('ensayo p on de.fkensayo=p.pkensayo')
-         ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
-         ->select('p.nombre as ensayo,g.nombre as grupo,de.costo')      
+         ->from('detalle_matriz dm')
+         ->join('ensayo p on dm.fkensayo=p.pkensayo')
+         ->join('matriz m on dm.fkmatriz=m.pkmatriz')
+         ->select('p.nombre as ensayo,m.nombre as matriz,dm.costo')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -28,11 +28,11 @@ class Detalle_Grupo{
      public function ListaPrecio() {
         try {
            return $this->pdo
-         ->from('detalle_grupo de')
-         ->join('ensayo p on de.fkensayo=p.pkensayo')
-         ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
-         ->select('de.fkgrupo,SUM(de.costo) as total')
-         ->groupBy('de.fkgrupo')      
+         ->from('detalle_matriz dm')
+         ->join('ensayo p on dm.fkensayo=p.pkensayo')
+         ->join('matriz m on dm.fkmatriz=m.pkmatriz')
+         ->select('dm.fkmatriz,SUM(dm.costo) as total')
+         ->groupBy('dm.fkmatriz')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -54,20 +54,20 @@ class Detalle_Grupo{
     public function Registrar($datos)
     {
          try {
-          return $this->pdo->insertInto('detalle_grupo', $datos)->execute();
+          return $this->pdo->insertInto('detalle_matriz', $datos)->execute();
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
    
-    public function Existedetalle_grupo($fkgrupo,$fkprametro)
+    public function Existedetalle_matriz($fkmatriz,$fkparametro)
     {
        try 
         {
           return $this->pdo
-         ->from('detalle_grupo')
-         ->select('detalle_grupo.*')
-         ->where('fkgrupo=? and fkensayo=?',$fkgrupo,$fkprametro)          
+         ->from('detalle_matriz')
+         ->select('detalle_matriz.*')
+         ->where('fkmatriz=? and fkensayo=?',$fkmatriz,$fkparametro)          
          ->fetch();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -78,8 +78,8 @@ class Detalle_Grupo{
     {
       try 
         {
-           $this->pdo->deleteFrom('detalle_grupo')
-                     ->where('fkensayo=? and fkgrupo=?', $datos['fkensayo'],$datos['fkgrupo'])
+           $this->pdo->deleteFrom('detalle_matriz')
+                     ->where('fkensayo=? and fkmatriz=?', $datos['fkensayo'],$datos['fkmatriz'])
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());
