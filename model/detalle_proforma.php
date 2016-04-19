@@ -19,7 +19,7 @@ class detalle_proforma{
          ->from('detalle_proforma de')
          ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('p.nombre as ensayo,pr.nombre as proforma,de.costo')      
+         ->select('de.fkproforma,de.fkensayo,p.nombre as ensayo,pr.nombre as proforma')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());

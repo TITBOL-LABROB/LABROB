@@ -6,6 +6,7 @@ require_once 'model/cliente.php';
 require_once 'model/ensayo.php';
 require_once 'model/institucion.php';
 require_once 'model/detalle_proforma.php';
+require_once 'model/detalle_grupo.php';
 
 class ProformaController {
 
@@ -15,6 +16,7 @@ class ProformaController {
     private $cliente;
     private $ensayo;
     private $detalle;
+    private $detalleG;
     private $institucion;
 
     public function __CONSTRUCT() {
@@ -24,6 +26,7 @@ class ProformaController {
         $this->cliente=new Cliente();
         $this->ensayo=new Ensayo();
         $this->detalle=new detalle_proforma();
+        $this->detalleG=new detalle_grupo();
         $this->institucion=new Institucion();
     }
 
@@ -45,10 +48,9 @@ class ProformaController {
         $grupos=$this->grupo->Listar();
         $clientes = $this->cliente->Listar();
         $instituciones=$this->institucion->Listar();
-        $detalle = $this->detalle->Listar();
-        $ensayos = $this->ensayo->Listar();    
-        $precios=$this->detalle->listaPrecio();      
-        $this->vista->Detalle($proformas,$clientes,$ensayos,$grupos,$precios,$instituciones);
+        $detalle = $this->detalle->Listar(); 
+        $detalleG = $this->detalleG->Listar();     
+        $this->vista->Detalle($proformas,$clientes,$detalle,$detalleG,$grupos,$instituciones);
     }
     
     public function contrato() 
@@ -113,29 +115,18 @@ class ProformaController {
         return $num;
      }
      
-     public function Agregarensayo(){
-        $ensayo=$this->ensayo->Obtener($_REQUEST['pkensayo']);
+     public function AgregarEnsayo(){
+        $array = json_decode($_REQUEST['datos'],true);
         $pkproforma=($_REQUEST['pkproforma']);
-        $datos = array(
-            'fkproforma' => $_REQUEST['pkproforma'],
-            'fkensayo' => $_REQUEST['pkensayo'],
-            'costo' => $ensayo->costo
-        );
 
-        if($this->detalle->Existedetalle_proforma($datos['fkproforma'],$datos['fkensayo'])=="")
-        {
+         foreach ($array as $r):
+            $datos = array(
+                'fkproforma' => $pkproforma,
+                'fkensayo' => $r
+            );
             $this->detalle->Registrar($datos);
-            header("Location: ?c=proforma&a=editar&id=$pkproforma&item=ensayo para la proforma&tarea=agregar&exito=si");
-        }else{
-            header("Location: ?c=proforma&a=editar&id=$pkproforma&item=ensayo para la proforma&tarea=agregar&exito=no"); exit;
-        }
-
-       /* if ($exito=='si') {
-            $tipo_servicio = $this->model->Obtener($_REQUEST['pktipo_servicio']);
-            $ensayo = $this->ensayo->Obtener($_REQUEST['pkensayo']);
-            $DescripcionBitacora = 'se agrego el ensayo '.$ensayo->nombre.' al tipo de servicio '.$tipo_servicio->nombre;
-            $this->bitacora->GuardarBitacora($DescripcionBitacora);
-        }*/
+        endforeach ;
+            header("Location: ?c=proforma&item=Asignacion de ensayos&tarea=agregar&exito=si");
         
     }
 

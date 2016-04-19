@@ -17,7 +17,7 @@
         require_once 'view/footer.php';
     }
 
-    public function Detalle($proformas,$clientes,$ensayos,$grupos,$precios,$instituciones) {
+    public function Detalle($proformas,$clientes,$detalle,$detalleG,$grupos,$instituciones) {
         require_once 'view/header.php';
         require_once 'view/proforma/proforma-detalle.php';
         require_once 'view/footer.php';
