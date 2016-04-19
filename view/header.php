@@ -32,8 +32,8 @@ if (isset($_REQUEST['exito'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>EPSAS</title>
-    <link rel="shortcut icon" href="resources/img/icono.ico">
+    <title>LABROB</title>
+    <link rel="shortcut icon" href="resources/img/logotipo2.png">
     <!--Loader-->
     <link href="resources/css/loader.css" rel="stylesheet">
     <!-- Bootstrap -->

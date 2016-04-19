@@ -1,9 +1,9 @@
 <h1 class="page-header">
-    <?php echo 'Nuevo Grupo de Ensayos'; ?>
+    <?php echo 'Nueva Matriz'; ?>
 </h1>
 
 <ol class="breadcrumb">
-    <li><a href="?c=grupo_ensayo " style="color: #263340";>Grupo de Ensayos</a></li>
+    <li><a href="?c=grupo_ensayo " style="color: #263340";>Matriz</a></li>
     <li >Nuevo Registro</li>
 </ol>
 

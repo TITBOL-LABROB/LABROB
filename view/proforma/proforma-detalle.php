@@ -35,7 +35,14 @@
                                <div class="col-md-4">  
                                 <div class="form-group">
                                 <label>Institucion</label>
-                                 <input type="text" name="Institucion" class="form-control" value="<?php echo $proformas->institucion; ?>" readonly/>
+                                 <input type="text" name="Institucion" class="form-control" value="<?php
+                                 foreach ($instituciones as $i) 
+                                 {
+                                    if($proformas->fkinstitucion==$i->pkinstitucion)
+                                    {
+                                        echo $i->nombre;
+                                    }
+                                  }  ?>" readonly/>
                                 </div>
                                </div>
                               </div>  

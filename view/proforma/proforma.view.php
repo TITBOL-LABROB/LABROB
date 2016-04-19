@@ -11,13 +11,13 @@
         require_once 'view/footer.php';
     }
 
-    public function Nuevo($grupos,$clientes) {
+    public function Nuevo($grupos,$clientes,$instituciones) {
         require_once 'view/header.php';
         require_once 'view/proforma/proforma-new.php';
         require_once 'view/footer.php';
     }
 
-    public function Detalle($proformas,$clientes,$detalle,$ensayos,$precios) {
+    public function Detalle($proformas,$clientes,$detalle,$ensayos,$precios,$instituciones) {
         require_once 'view/header.php';
         require_once 'view/proforma/proforma-detalle.php';
         require_once 'view/footer.php';

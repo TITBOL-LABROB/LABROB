@@ -20,12 +20,18 @@ class Proforma {
     public function Listar() {
        try 
         {
-     return $this->pdo->from('proforma p')
-                      ->Join('institucion i on p.fkinstitucion=i.pkinstitucion')
-                      ->Join('cliente c on p.fkcliente=c.pkcliente')
-                      ->select(" CONCAT('P0',p.codigo)as codigo_completo, p.*,c.pkcliente,i.nombre as institucion")
-                      ->where('p.estado=1')  
-                      ->fetchAll();
+    $sql = $this->pdo2->prepare("SELECT distinct CONCAT('P0',p.codigo)as codigo_completo, p.*,c.pkcliente,
+             CAST(case 
+               when p.fkinstitucion is null
+               then ''
+               when p.fkinstitucion>0
+               then i.nombre
+               end as char) as institucion
+            FROM proforma p,institucion i,cliente c 
+            WHERE (p.fkinstitucion=i.pkinstitucion or p.fkinstitucion is null)
+            and c.pkcliente=p.fkcliente and p.estado=1");
+            $sql->execute();
+            return $sql->fetchAll(PDO::FETCH_OBJ);
 
         } catch (Exception $e) {
             die($e->getMessage());
@@ -108,4 +114,5 @@ class Proforma {
         }
     }
 }
+/**/
 ?>

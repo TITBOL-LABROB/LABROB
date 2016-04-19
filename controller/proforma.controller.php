@@ -4,6 +4,7 @@ require_once 'model/proforma.php';
 require_once 'model/grupo_ensayo.php';
 require_once 'model/cliente.php';
 require_once 'model/ensayo.php';
+require_once 'model/institucion.php';
 require_once 'model/detalle_proforma.php';
 
 class ProformaController {
@@ -14,6 +15,7 @@ class ProformaController {
     private $cliente;
     private $ensayo;
     private $detalle;
+    private $institucion;
 
     public function __CONSTRUCT() {
         $this->model = new Proforma();
@@ -22,6 +24,7 @@ class ProformaController {
         $this->cliente=new Cliente();
         $this->ensayo=new Ensayo();
         $this->detalle=new detalle_proforma();
+        $this->institucion=new Institucion();
     }
 
     public function Index() {
@@ -33,16 +36,18 @@ class ProformaController {
     public function Nuevo() {
          $grupos=$this->grupo->Listar();
          $clientes=$this->cliente->Listar();
-        $this->vista->Nuevo($grupos,$clientes);
+         $instituciones=$this->institucion->Listar();
+        $this->vista->Nuevo($grupos,$clientes,$instituciones);
     }
 
     public function editar() {
         $proformas = $this->model->Obtener($_REQUEST['id']);
         $ensayos=$this->ensayo->Listar();
         $clientes = $this->cliente->Listar();
+        $instituciones=$this->institucion->Listar();
         $detalle = $this->detalle->Listar();  
         $precios=$this->detalle->listaPrecio();      
-        $this->vista->Detalle($proformas,$clientes,$detalle,$ensayos,$precios);
+        $this->vista->Detalle($proformas,$clientes,$detalle,$ensayos,$precios,$instituciones);
     }
     
     public function contrato() 
@@ -71,21 +76,24 @@ class ProformaController {
         {
            $num++; $codigo="".$num."/".$fecha;
         } 
+        
+        $fkinstitucion=null;
+        if(isset($_REQUEST['fkinstitucion'])){
+          $fkinstitucion=$_REQUEST['fkinstitucion'];
+        }
 
         $datos = array(
             'codigo'=>$codigo,
             'fecha' => $_REQUEST['fecha'],
-            'fkgrupo' => $_REQUEST['pkgrupo'],
             'nombre' => $_REQUEST['nombre'],
             'fkcliente' => $_REQUEST['pkcliente'],
             'persona_solicitante' => $_REQUEST['persona_solicitante'],
             'correo_solicitante' => $_REQUEST['correo_solicitante'],
-            'institucion' => $_REQUEST['institucion'],
+            'fkinstitucion' => $fkinstitucion,
             'telefono_solicitante' => $_REQUEST['telefono_solicitante'],
             'dias' => $_REQUEST['dias'],
             'diriguido' => $_REQUEST['diriguido'],
         ); 
-
         $pkproforma=$this->model->Registrar($datos);
         header("Location: ?c=proforma&item=proforma&tarea=agregar&exito=si");
     }

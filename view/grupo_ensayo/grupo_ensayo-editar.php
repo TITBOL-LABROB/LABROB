@@ -3,7 +3,7 @@
 </h1>
 
 <ol class="breadcrumb">
-    <li><a href="?c=grupo_ensayo" style="color: #263340";>Grupo de Ensayos</a></li>
+    <li><a href="?c=grupo_ensayo" style="color: #263340";>Matriz</a></li>
     <li class="active"><?php echo $grupo_ensayo->pkgrupo_ensayo != null ? $grupo_ensayo->pkgrupo_ensayo : 'Nuevo Registro'; ?></li>
 </ol>
 

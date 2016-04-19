@@ -5,18 +5,18 @@
     }
 </style>
 <div id="wrapper">
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0 ; background-color: #263340; border-color: #263340">
-        <div class="navbar-header">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0 ; background-color: #7CB342; border-color: #7CB342">
+        <div class="navbar-header" style="height: 70px;">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">LABROB</a>
+            <a class="navbar-brand" href="index.php"><span ><img src="resources/img/logotipo2.png" width="80" height="70"></span>LABROB</a>
         </div>
         <!-- Barra horizontal -->
-        <ul class="nav navbar-top-links navbar-right">
+        <ul class="nav navbar-top-links navbar-right" >
             <!-- Mensajes -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
@@ -149,7 +149,7 @@
             </li>
         </ul>
         <!--Menu vertical-->
-        <div class="navbar-default sidebar" role="navigation" style=" background-color: #263340">
+        <div class="navbar-default sidebar" role="navigation" style=" background-color: #263340; margin-top: 100px;">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
@@ -162,7 +162,7 @@
                                 <a href="?c=area"><i class="fa fa-building fa-fw fa-2x"></i> Area</a>
                             </li>
                             <li>
-                                <a href="?c=grupo_ensayo"><i class="fa fa-wrench fa-fw fa-2x"></i> Grupo de Ensayos</a>
+                                <a href="?c=grupo_ensayo"><i class="fa fa-wrench fa-fw fa-2x"></i> Matriz</a>
                             </li>
                             <li>
                                 <a href="?c=tipo_ensayo"><i class="fa fa-crop fa-fw fa-2x"></i>Tipo de Ensayo</a>
