@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><span ><img src="resources/img/logotipo2.png" width="80" height="70"></span>LABROB</a>
+            <a class="navbar-brand" href="index.php"><span ><img src="resources/img/logotipo2.png" width="60" height="50"></span>LABROB</a>
         </div>
         <!-- Barra horizontal -->
         <ul class="nav navbar-top-links navbar-right" >

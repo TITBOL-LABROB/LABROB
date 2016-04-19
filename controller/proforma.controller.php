@@ -42,12 +42,13 @@ class ProformaController {
 
     public function editar() {
         $proformas = $this->model->Obtener($_REQUEST['id']);
-        $ensayos=$this->ensayo->Listar();
+        $grupos=$this->grupo->Listar();
         $clientes = $this->cliente->Listar();
         $instituciones=$this->institucion->Listar();
-        $detalle = $this->detalle->Listar();  
+        $detalle = $this->detalle->Listar();
+        $ensayos = $this->ensayo->Listar();    
         $precios=$this->detalle->listaPrecio();      
-        $this->vista->Detalle($proformas,$clientes,$detalle,$ensayos,$precios,$instituciones);
+        $this->vista->Detalle($proformas,$clientes,$ensayos,$grupos,$precios,$instituciones);
     }
     
     public function contrato() 

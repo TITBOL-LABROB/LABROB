@@ -49,51 +49,16 @@
                             </div>
                             <div id="<?php echo $proformas->pkproforma; ?>" class="panel-body">
                                 <div class="panel-body">
-                                    <div class="btn-group">
-                                        <select class="parcmb" id="parcmb<?php echo $proformas->pkproforma; ?>">
-                                            <?php foreach ($ensayos as $p): ?>
-                                                <option value='<?php echo $p->pkensayo;?>'><?php echo $p->nombre;?></option>
+                                    <label >Matrices</label>
+                                    <div class="form-group">
+                                        <select multiple="multiple"  id="parcmb">
+                                            <?php foreach ($grupos as $p): ?>
+                                                <option value='<?php echo $p->pkgrupo_ensayo;?>'><?php echo $p->nombre;?></option>
                                             <?php endforeach ?>
                                         </select>
-                                        <a href="#" onclick="AgregarEnsayo('<?php echo $proformas->pkproforma; ?>','parcmb<?php echo $proformas->pkproforma; ?>')" class="btn btn-outline btn-primary" id="agregar<?php echo $proformas->pkproforma; ?>"><i class="fa fa-plus"></i> Agregar Ensayo</a>
+                                       
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table" >
-                                            <thead>
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>Costo</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php foreach ($detalle as $d): ?>
-                                                <?php if ($d->fkproforma == $proformas->pkproforma){ ?>
-                                                    <?php foreach ($ensayos as $p): ?>
-                                                        <?php if ($p->pkensayo == $d->fkensayo){ ?>
-                                                            <tr>
-                                                                <td><?php echo $p->nombre; ?></td>
-                                                                <td><?php echo $p->costo; ?></td>
-                                                                <td>
-                                                                    <a href="#" onclick="QuitarEnsayo('<?php echo $proformas->pkproforma; ?>','<?php echo $proformas->nombre; ?>' ,'<?php echo $p->pkensayo; ?>','<?php echo $p->nombre; ?>')" class="btn btn-outline btn-danger btn-circle"  style="color: darkred"><i class="fa fa-trash"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        <?php } ?>
-                                                    <?php endforeach ?>
-                                                <?php } ?>
-                                            <?php endforeach ?>
-                                            <tr>
-                                                <td colspan="5">
-                                                    <?php foreach ($precios as $pr): ?>
-                                                        <?php if ($pr->fkproforma == $proformas->pkproforma){ ?>
-                                                            <label style="color: #800000; font-size: 20px">Precio total: <?php echo $pr->total; ?></label>
-                                                        <?php } ?>
-                                                    <?php endforeach ?>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                 
                                 </div>
                             </div>
                         </div>
@@ -103,14 +68,20 @@
     </div>
 </div>
 <!-- jQuery para buscador y paginacion-->
-<script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
+
 <script>
     $(document).ready(function() {
-      /*  $('.parcmb').multiselect({
+       $('#parcmb').multiselect({
+            enableCollapsibleOptGroups: true,
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
-            filterPlaceholder: 'Buscar'
-        });*/
+            filterPlaceholder: 'Buscar',
+            selectAllText: 'Seleccionar todo',
+            nonSelectedText : 'Ningun sistema seleccionado',
+            allSelectedText: 'Todos los sistemas seleccionados',
+            nSelectedText: 'seleccionados',
+            checkboxName: 'multiselect[]'
+        });
     });
 
     function AgregarEnsayo(pkproforma,idcmb){
