@@ -56,7 +56,7 @@ $fluent = new FluentPDO($pdo);*/
         if (self::$pdo == null) {
             $bd = 'mysql:host=localhost;port=3306;dbname=labrob';
             $username = 'root';
-            $password = '';
+            $password = 'chars';
             self::$pdo = new PDO($bd, $username, $password);
 
             // Habilitar excepciones
@@ -72,7 +72,7 @@ $fluent = new FluentPDO($pdo);*/
         if (self::$pdo == null) {
             $bd = 'mysql:host=localhost;port=3306;dbname=labrob';
             $username = 'root';
-            $password = '';
+            $password = 'chars';
             self::$pdo = new PDO($bd, $username, $password);
 
             // Habilitar excepciones

@@ -19,7 +19,7 @@ class Detalle_Grupo{
          ->from('detalle_grupo de')
          ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
-         ->select('p.nombre as ensayo,g.nombre as grupo,de.costo')      
+         ->select('de.fkgrupo,de.fkensayo, p.nombre as ensayo,g.nombre as grupo,de.costo')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
