@@ -7,7 +7,7 @@ require_once 'model/cliente.php';
 require_once 'model/ensayo.php';
 require_once 'model/institucion.php';
 require_once 'model/detalle_proforma.php';
-require_once 'model/detalle_grupo.php';
+require_once 'model/detalle_proforma_grupo.php';
 require_once 'model/detalle_matriz.php';
 
 class ProformaController {
@@ -30,7 +30,7 @@ class ProformaController {
         $this->cliente=new Cliente();
         $this->ensayo=new Ensayo();
         $this->detalle=new detalle_proforma();
-        $this->detalleG=new detalle_grupo();
+        $this->detalleG=new detalle_proforma_grupo();
         $this->detalleM=new detalle_matriz();
         $this->institucion=new Institucion();
         $this->matriz=new Matriz();
@@ -56,13 +56,16 @@ class ProformaController {
         $clientes = $this->cliente->Listar();
         $instituciones=$this->institucion->Listar();
         $detalle = $this->detalle->ListarProforma($_REQUEST['id']);
-        $detalleG = $this->detalleG->Listar();
+        $detalleG = $this->detalleG->ListarProforma($_REQUEST['id']);
         $detalleM = $this->detalleM->Listar();
-        $listaRegistrados = array();
+        $listaRegistrados = array(); $listaRegistradosG = array();
         foreach ($detalle as $d) {
           array_push($listaRegistrados, $d->fkensayo);
-        }     
-        $this->vista->Detalle($proformas,$clientes,$detalle,$detalleG,$detalleM,$grupos,$matrices,$instituciones,$listaRegistrados);
+        }
+        foreach ($detalleG as $d) {
+          array_push($listaRegistradosG, $d->fkgrupo);
+        }      
+        $this->vista->Detalle($proformas,$clientes,$detalle,$detalleG,$detalleM,$grupos,$matrices,$instituciones,$listaRegistrados,$listaRegistradosG);
     }
     
     public function contrato() 
@@ -129,14 +132,24 @@ class ProformaController {
      
      public function AgregarEnsayo(){
         $array = json_decode($_REQUEST['datos'],true);
+        $arrayG = json_decode($_REQUEST['datosG'],true);
         $pkproforma=($_REQUEST['pkproforma']);
-        $this->detalle->eliminar($pkproforma);
+        $this->detalle->Eliminar($pkproforma);
          foreach ($array as $r):
             $datos = array(
                 'fkproforma' => $pkproforma,
                 'fkensayo' => $r
             );
             $this->detalle->Registrar($datos);
+        endforeach ;
+        
+       $this->detalleG->Eliminar($pkproforma);
+        foreach ($arrayG as $r):
+            $datos = array(
+                'fkproforma' => $pkproforma,
+                'fkgrupo' => $r
+            );
+            $this->detalleG->Registrar($datos);
         endforeach ;
             header("Location: ?c=proforma&item=grupo de ensayos&tarea=agregar&exito=si");
         

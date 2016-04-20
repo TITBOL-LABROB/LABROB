@@ -3,6 +3,11 @@
     <?php foreach ($detalle as $r): ?>
         datos.push('<?php echo $r->fkensayo; ?>');
     <?php endforeach ?>
+
+    var datosG = [];
+    <?php foreach ($detalleG as $r): ?>
+        datosG.push('<?php echo $r->fkgrupo; ?>');
+    <?php endforeach ?>
 </script>
 <h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Asignar ensayos</h1>
 <input type="hidden" id="pkproforma" value="<?php echo $proformas->pkproforma; ?>">
@@ -80,16 +85,9 @@
                                     <div class="form-group">
                                         <select multiple="multiple"  id="parcmb2">
                                             <?php foreach ($grupos as $p): ?>
-                                                <optgroup label="<?php echo $p->nombre; ?>">
-                                               <?php foreach ($detalleG as $de): ?>
-                                                <?php if($de->fkgrupo==$p->pkgrupo_ensayo){  ?>
-                                                <option
-                                              <?php if (in_array($de->fkensayo, $listaRegistrados)){ ?>
+                                                <option <?php if (in_array($p->pkgrupo_ensayo, $listaRegistradosG)){ ?>
                                             selected="selected" <?php }?>
-                                    value="<?php echo $de->fkensayo;?>,<?php echo $de->ensayo;?>,<?php echo $de->costo;?>"><?php echo $de->ensayo;?></option>
-                                    <?php }?>
-                                            <?php endforeach ?>
-                                            </optgroup>
+                                    value="<?php echo $p->pkgrupo_ensayo;?>,<?php echo $p->nombre;?>,<?php echo $p->costo;?>"><?php echo $p->nombre;?></option>
                                             <?php endforeach ?>
                                         </select>
                                        
@@ -99,6 +97,9 @@
                                  <div class="table-responsive">
                                         <table class="table" >
                                             <thead>
+                                           <tr><th colspan="3" style="text-align:center; text-decoration: underline;">Ensayos de Matrices</th>
+                                              <th></th>
+                                           </tr>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nombre</th>
@@ -109,8 +110,34 @@
                                             <tbody id="cuerpo">
                                             <?php foreach ($detalle as $r): ?>
                                              <tr id="<?php echo $r->fkensayo; ?>">
-                                               <td><?php echo $r->fkensayo; ?></td>
+                                               <td ><?php echo $r->fkensayo; ?></td>
                                                <td><?php echo $r->ensayo; ?></td>
+                                               <td><?php echo $r->costo; ?></td>
+                                            </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                   </div> 
+
+                                    <div class="col-md-12">   
+                                 <div class="table-responsive">
+                                        <table class="table" >
+                                            <thead>
+                                           <tr><th colspan="3" style="text-align:center; text-decoration: underline;">Grupo de Ensayos</th>
+                                           </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre</th>
+                                                <th>Costo</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="cuerpo2">
+                                            <?php foreach ($detalleG as $r): ?>
+                                             <tr id="<?php echo $r->fkgrupo; ?>">
+                                               <td ><?php echo $r->fkgrupo; ?></td>
+                                               <td ><?php echo $r->grupo; ?></td>
                                                <td><?php echo $r->costo; ?></td>
                                             </tr>
                                             <?php endforeach ?>
@@ -151,7 +178,7 @@
                 }else{
                     var indice = jQuery.inArray(sucursal[0], datos);
                     datos.splice(indice, 1);
-                    $('#' + sucursal[0]).remove();
+                    $('#cuerpo tr#' + sucursal[0]).remove();
                 }
             }
         });
@@ -168,13 +195,13 @@
             checkboxName: 'multiselect[]',
             onChange: function(option, checked) {
                 var sd = $(option).val();
-                var sucursal = sd.split(',');
+                var grupo = sd.split(',');
                 if(checked === true) {
-                    $('#cuerpo').append(NuevaFila(sucursal));
+                    $('#cuerpo2').append(NuevaFilaG(grupo));
                 }else{
-                    var indice = jQuery.inArray(sucursal[0], datos);
-                    datos.splice(indice, 1);
-                    $('#' + sucursal[0]).remove();
+                    var indice = jQuery.inArray(grupo[0], datosG);
+                    datosG.splice(indice, 1);
+                    $('#cuerpo2 tr#' + grupo[0]).remove();
                 }
             }
         });
@@ -191,11 +218,24 @@
         fila += "</tr>";
         return fila;
     }
+    function NuevaFilaG(grupo){
+        datosG.push(grupo[0]);
+        var fila = "";
+        fila += "<tr id='" + grupo[0] + "'>";
+        $.each(grupo, function (index, s) {
+            fila += "<td>";
+            fila += s;
+            fila += "</td>";
+        });
+        fila += "</tr>";
+        return fila;
+    }
 
      function Guardar(){
         var pkproforma = $('#pkproforma').val();
         datos = JSON.stringify(datos);
-        var ubicacion = '?c=proforma&a=AgregarEnsayo&pkproforma='+pkproforma+'&datos='+datos;
+        datosG = JSON.stringify(datosG);
+        var ubicacion = '?c=proforma&a=AgregarEnsayo&pkproforma='+pkproforma+'&datos='+datos+'&datosG='+datosG;
         window.location = ubicacion;
     }
 

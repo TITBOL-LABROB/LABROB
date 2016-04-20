@@ -38,7 +38,7 @@ class matriz {
          try {
            $this->pdo->update('matriz')
                      ->set($datos)
-                     ->where('pkm   atriz', $datos['pkmatriz'])
+                     ->where('pkmatriz', $datos['pkmatriz'])
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());
