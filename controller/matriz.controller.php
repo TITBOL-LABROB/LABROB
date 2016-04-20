@@ -48,7 +48,6 @@ class MatrizController {
     }
     public function Guardar_Cambios() {
       
-
         $datos = array(
             'pkmatriz'=> $_REQUEST['pkmatriz'],
             'nombre' => $_REQUEST['nombre'],

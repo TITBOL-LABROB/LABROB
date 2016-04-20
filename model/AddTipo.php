@@ -2,7 +2,7 @@
 require_once 'FluentPDO/FluentPDO.php';
     $bd = 'mysql:host=localhost;port=3306;dbname=labrob';
             $username = 'root';
-            $password = 'chars';
+            $password = '';
             $pdo = new PDO($bd, $username, $password);
 
             // Habilitar excepciones
