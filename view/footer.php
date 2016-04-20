@@ -101,6 +101,12 @@
                       existe=true;
                     }
                     break;
+                case "detalle_matriz":
+                    if ("<?php echo $exito;?>" == "si") {
+                      ExisteDetalleMatriz();
+                      existe=true;
+                    }
+                    break;
                  case "detalle_proforma":
                     if ("<?php echo $exito;?>" == "si") {
                       ExisteDetalleProforma();
@@ -237,6 +243,26 @@
             }
         );
     }
+
+    function ExisteDetalleMatriz(){
+        swal({
+                title: 'Agregar Ensayo',
+                text: 'EL Ensayo ya esta agregado en esta matriz',
+                type: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si',
+                confirmButtonClass: 'confirm-class',
+                closeOnConfirm: true,
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    var ubicacion = '?c=matriz';
+                    window.location = ubicacion;
+                }
+            }
+        );
+    }
+
     function ExisteDetalleProforma(){
         swal({
                 title: 'Agregar Parametro',

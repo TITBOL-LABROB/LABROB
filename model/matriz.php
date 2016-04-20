@@ -24,6 +24,7 @@ class matriz {
             die($e->getMessage());
         }
     }
+
     public function Registrar($datos)
     {
          try {
@@ -37,7 +38,7 @@ class matriz {
          try {
            $this->pdo->update('matriz')
                      ->set($datos)
-                     ->where('pkmatriz', $datos['pkmatriz'])
+                     ->where('pkm   atriz', $datos['pkmatriz'])
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());

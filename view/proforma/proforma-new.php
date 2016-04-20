@@ -24,7 +24,7 @@
     <input type="hidden" name="pkproforma" value="0" />
    <div class="row">
         <div class="col-md-6">
-        <div class="form-group">
+             <div class="form-group">
                 <label>Fecha Solicitud</label>
                 <input <input class="form-control" type="date" name="fecha"  
                        placeholder="Ingrese el metodo" required />

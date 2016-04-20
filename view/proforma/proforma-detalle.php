@@ -4,7 +4,6 @@
         datos.push('<?php echo $r->fkensayo; ?>');
     <?php endforeach ?>
 </script>
-<?php echo array_search('3',$detalle); ?> 
 <h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Asignar ensayos</h1>
 <input type="hidden" id="pkproforma" value="<?php echo $proformas->pkproforma; ?>">
 <div class="row">
@@ -57,9 +56,29 @@
                             </div>
                             <div id="<?php echo $proformas->pkproforma; ?>" class="panel-body">
                                 <div class="panel-body">
+                                  <div class="col-md-6">
                                     <label >Matrices</label>
                                     <div class="form-group">
                                         <select multiple="multiple"  id="parcmb">
+                                            <?php foreach ($matrices as $m): ?>
+                                                <optgroup label="<?php echo $m->nombre; ?>">
+                                               <?php foreach ($detalleM as $dem): ?>
+                                                <?php if($dem->fkmatriz==$m->pkmatriz){  ?>
+                                                <option
+                                              <?php if (in_array($dem->fkensayo, $listaRegistrados)){ ?>
+                                            selected="selected" <?php }?>
+                                    value="<?php echo $dem->fkensayo;?>,<?php echo $dem->ensayo;?>,<?php echo $dem->costo;?>"><?php echo $dem->ensayo;?></option>
+                                    <?php }?>
+                                            <?php endforeach ?>
+                                            </optgroup>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                   </div>
+                                   <div class="col-md-6"> 
+                                    <label >Grupos de Ensayos</label>
+                                    <div class="form-group">
+                                        <select multiple="multiple"  id="parcmb2">
                                             <?php foreach ($grupos as $p): ?>
                                                 <optgroup label="<?php echo $p->nombre; ?>">
                                                <?php foreach ($detalleG as $de): ?>
@@ -75,6 +94,8 @@
                                         </select>
                                        
                                     </div>
+                                   </div>
+                                 <div class="col-md-12">   
                                  <div class="table-responsive">
                                         <table class="table" >
                                             <thead>
@@ -95,7 +116,8 @@
                                             <?php endforeach ?>
                                         </tbody>
                                         </table>
-                                    </div>      
+                                    </div>
+                                   </div>       
                                 </div>
                             </div>
                         </div>
@@ -112,6 +134,29 @@
 <script>
     $(document).ready(function() {
        $('#parcmb').multiselect({
+            enableCollapsibleOptGroups: true,
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            filterPlaceholder: 'Buscar',
+            selectAllText: 'Seleccionar todo',
+            nonSelectedText : 'Ningun sistema seleccionado',
+            allSelectedText: 'Todos los sistemas seleccionados',
+            nSelectedText: 'seleccionados',
+            checkboxName: 'multiselect[]',
+            onChange: function(option, checked) {
+                var sd = $(option).val();
+                var sucursal = sd.split(',');
+                if(checked === true) {
+                    $('#cuerpo').append(NuevaFila(sucursal));
+                }else{
+                    var indice = jQuery.inArray(sucursal[0], datos);
+                    datos.splice(indice, 1);
+                    $('#' + sucursal[0]).remove();
+                }
+            }
+        });
+
+       $('#parcmb2').multiselect({
             enableCollapsibleOptGroups: true,
             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,

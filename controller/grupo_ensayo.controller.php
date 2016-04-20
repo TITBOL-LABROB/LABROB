@@ -22,7 +22,7 @@ class Grupo_ensayoController {
         $listaroles = $this->model->Listar();
         $ensayos=$this->ensayo->Listar();
         $detalle=$this->detalle->listar();
-        $precios=$this->detalle->listaPrecio();      
+        $precios=$this->detalle->listaPrecio1();      
         $this->vista->View($listaroles,$ensayos,$detalle,$precios);
     }
 
@@ -59,6 +59,7 @@ class Grupo_ensayoController {
 
         header("Location: ?c=grupo_ensayo&item=grupo de ensayo&tarea=agregar&exito=si");
     }
+
     public function GuardarCambios() {
       
 
@@ -67,13 +68,9 @@ class Grupo_ensayoController {
             'nombre' => $_REQUEST['nombre'],
             'observacion' => $_REQUEST['observacion'],
             'costo' => $_REQUEST['costo']
-        );        
-        /*if($this->model->Existegrupo_ensayo($datos['nombre'])!="")
-          {
-            header("Location: ?c=grupo_ensayo&a=editar&id=".$_REQUEST['pkgrupo_ensayo_usuario']." &item=usuario&tarea=username&exito=si");
-            exit;
-          } */
-            $pkgrupo_ensayo = $this->model->Editar($datos);
+        );    
+
+        $pkgrupo_ensayo = $this->model->Editar($datos);
 
         header("Location: ?c=grupo_ensayo&item=grupo de ensayo&tarea=modificar&exito=si");
     }

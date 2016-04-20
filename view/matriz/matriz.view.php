@@ -5,7 +5,7 @@
         
     }
 
-    public function View($lista) {
+    public function View($lista,$ensayos,$detalle,$precios) {
         require_once 'view/header.php';
         require_once 'view/matriz/matriz-admin.php'; //html
         require_once 'view/footer.php';
@@ -19,6 +19,12 @@
 
 
     public function Editar($matriz) {
+        require_once 'view/header.php';
+        require_once 'view/matriz/matriz-editar.php';
+        require_once 'view/footer.php';
+    }
+
+    public function Detalle($grupo_ensayo,$ensayos,$lista) {
         require_once 'view/header.php';
         require_once 'view/matriz/matriz-editar.php';
         require_once 'view/footer.php';
