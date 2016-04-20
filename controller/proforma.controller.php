@@ -48,9 +48,13 @@ class ProformaController {
         $grupos=$this->grupo->Listar();
         $clientes = $this->cliente->Listar();
         $instituciones=$this->institucion->Listar();
-        $detalle = $this->detalle->Listar(); 
-        $detalleG = $this->detalleG->Listar();     
-        $this->vista->Detalle($proformas,$clientes,$detalle,$detalleG,$grupos,$instituciones);
+        $detalle = $this->detalle->ListarProforma($_REQUEST['id']);
+        $detalleG = $this->detalleG->Listar();
+        $listaRegistrados = array();
+        foreach ($detalle as $d) {
+          array_push($listaRegistrados, $d->fkensayo);
+        }     
+        $this->vista->Detalle($proformas,$clientes,$detalle,$detalleG,$grupos,$instituciones,$listaRegistrados);
     }
     
     public function contrato() 
@@ -118,7 +122,7 @@ class ProformaController {
      public function AgregarEnsayo(){
         $array = json_decode($_REQUEST['datos'],true);
         $pkproforma=($_REQUEST['pkproforma']);
-
+        $this->detalle->eliminar($pkproforma);
          foreach ($array as $r):
             $datos = array(
                 'fkproforma' => $pkproforma,
@@ -126,7 +130,7 @@ class ProformaController {
             );
             $this->detalle->Registrar($datos);
         endforeach ;
-            header("Location: ?c=proforma&item=Asignacion de ensayos&tarea=agregar&exito=si");
+            header("Location: ?c=proforma&item=grupo de ensayos&tarea=agregar&exito=si");
         
     }
 

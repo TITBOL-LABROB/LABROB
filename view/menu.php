@@ -5,7 +5,7 @@
     }
 </style>
 <div id="wrapper">
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0 ; background-color: #7CB342; border-color: #7CB342">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0 ; background-color: #263340; border-color: #263340">
         <div class="navbar-header" style="height: 70px;">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -20,7 +20,7 @@
             <!-- Mensajes -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
-                    <i class="fa fa-envelope fa-fw"></i><span class="badge" style="background-color: darkred"> 1</span> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-envelope fa-fw"></i><span class="badge" style="background-color: darkred;"> 1</span> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
                     <li>

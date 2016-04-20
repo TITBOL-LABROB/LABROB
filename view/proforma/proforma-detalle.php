@@ -4,6 +4,7 @@
         datos.push('<?php echo $r->fkensayo; ?>');
     <?php endforeach ?>
 </script>
+<?php echo array_search('3',$detalle); ?> 
 <h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Asignar ensayos</h1>
 <input type="hidden" id="pkproforma" value="<?php echo $proformas->pkproforma; ?>">
 <div class="row">
@@ -62,9 +63,9 @@
                                             <?php foreach ($grupos as $p): ?>
                                                 <optgroup label="<?php echo $p->nombre; ?>">
                                                <?php foreach ($detalleG as $de): ?>
-                                                <?php if($de->fkgrupo==$p->pkgrupo_ensayo){ ?>
+                                                <?php if($de->fkgrupo==$p->pkgrupo_ensayo){  ?>
                                                 <option
-                                              <?php if (in_array($p->pkgrupo_ensayo, $detalle)){ ?>
+                                              <?php if (in_array($de->fkensayo, $listaRegistrados)){ ?>
                                             selected="selected" <?php }?>
                                     value="<?php echo $de->fkensayo;?>,<?php echo $de->ensayo;?>,<?php echo $de->costo;?>"><?php echo $de->ensayo;?></option>
                                     <?php }?>
@@ -85,6 +86,13 @@
                                             </tr>
                                             </thead>
                                             <tbody id="cuerpo">
+                                            <?php foreach ($detalle as $r): ?>
+                                             <tr id="<?php echo $r->fkensayo; ?>">
+                                               <td><?php echo $r->fkensayo; ?></td>
+                                               <td><?php echo $r->ensayo; ?></td>
+                                               <td><?php echo $r->costo; ?></td>
+                                            </tr>
+                                            <?php endforeach ?>
                                         </tbody>
                                         </table>
                                     </div>      
