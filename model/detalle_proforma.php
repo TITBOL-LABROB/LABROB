@@ -19,7 +19,20 @@ class detalle_proforma{
          ->from('detalle_proforma de')
          ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('de.fkproforma,de.fkensayo,p.nombre as ensayo,pr.nombre as proforma')      
+         ->select('de.fkproforma,de.fkensayo,p.nombre as ensayo,pr.nombre as proforma,p.costo')      
+         ->fetchAll();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function ListarProforma($pkproforma) {
+        try {
+           return $this->pdo
+         ->from('detalle_proforma de')
+         ->join('ensayo p on de.fkensayo=p.pkensayo')
+         ->join('proforma pr on de.fkproforma=pr.pkproforma')
+         ->select('de.fkproforma,de.fkensayo,p.nombre as ensayo,pr.nombre as proforma,p.costo')
+         ->where('pr.pkproforma',$pkproforma)      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
@@ -61,12 +74,12 @@ class detalle_proforma{
         }
     }
 
-    public function Eliminar($datos)
+    public function Eliminar($fkproforma)
     {
       try 
         {
            $this->pdo->deleteFrom('detalle_proforma')
-                     ->where('fkensayo=? and fkproforma=?', $datos['fkensayo'],$datos['fkproforma'])
+                     ->where('fkproforma',$fkproforma)
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());

@@ -19,7 +19,7 @@ class Detalle_Matriz{
          ->from('detalle_matriz dm')
          ->join('ensayo p on dm.fkensayo=p.pkensayo')
          ->join('matriz m on dm.fkmatriz=m.pkmatriz')
-         ->select('p.nombre as ensayo,m.nombre as matriz,dm.costo')      
+         ->select('dm.fkmatriz,dm.fkensayo,p.nombre as ensayo,m.nombre as matriz,dm.costo')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());

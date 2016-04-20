@@ -55,7 +55,7 @@ $(document).ready(function() {
                        placeholder="Ingrese el rango de trabajo maximo" required />
             </div>
             <div class="form-group">
-                <label>Rango de Trabajo Maximo</label>
+                <label>Rango de Trabajo Minimo</label>
                 <input type="number" name="rango_minimo" min="0" class="form-control"  
                        placeholder="Ingrese el rango de trabajo minimo" required />
             </div>
