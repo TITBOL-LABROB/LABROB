@@ -74,7 +74,6 @@ $fluent = new FluentPDO($pdo);*/
             $username = 'root';
             $password = 'chars';
             self::$pdo = new PDO($bd, $username, $password);
-
             // Habilitar excepciones
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);

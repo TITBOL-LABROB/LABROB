@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../../resources/bower_components/dompdf/dompdf_config.inc.php';
+require_once 'resources/bower_components/dompdf/dompdf_config.inc.php';
 
 date_default_timezone_set("America/La_Paz");
 $fecha=date("Y/m/d");

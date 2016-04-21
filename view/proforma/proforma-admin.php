@@ -21,7 +21,7 @@
                 <th >Telefono Solicitante</th>
                 <th >Dias</th>
                 <th >Diriguido a:</th>
-               <th style="width: 300px;">Acciones          </th>
+               <th >Acciones</th>
                 
             </tr>
         </thead>
@@ -43,7 +43,8 @@
                     <td><?php echo $r->dias; ?></td>
                     <td><?php echo $r->diriguido; ?></td>
                     <td>
-                          <a style="margin-right:8px;color: #263340;" href="?c=proforma&a=editar&id=<?php echo $r->pkproforma; ?>">Agregar Matriz</a><i class="fa fa-plus" ></i>
+                          <a style="padding-right:18px;color: #263340;" href="?c=proforma&a=detalle&id=<?php echo $r->pkproforma; ?>">Agregar Matriz</a><i class="fa fa-plus" ></i>
+                          <a target="_blank" style="margin-right:8px;color: #263340;" href="?c=proforma&a=ver&id=<?php echo $r->pkproforma; ?>">Ver</a><i class="fa fa-eye" ></i>
                           <a style="margin-right:8px;color: #263;" href="?c=proforma&a=contrato&id=<?php echo $r->pkproforma; ?>"></i>Contrato</a><i class="fa fa-building" aria-hidden="true">
                           <a href="#" onclick="eliminar('<?php echo $r->pkproforma; ?>','<?php echo $r->nombre;?>','proforma')" style="color: darkred"></i> Eliminar</a><i class="fa fa-trash">
                     </td>

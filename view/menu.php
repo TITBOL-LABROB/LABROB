@@ -162,14 +162,18 @@
                                 <a href="?c=area"><i class="fa fa-building fa-fw fa-2x"></i> Area</a>
                             </li>
                             <li>
+                                <a href="?c=norma"><i class="fa fa-file-text-o fa-fw fa-2x"></i>Norma</a>
+                            </li>
+                            <li>
                                 <a href="?c=grupo_ensayo"><i class="fa fa-wrench fa-fw fa-2x"></i> Grupo de Ensayo</a>
                             </li>
                             <li>
-                                <a href="?c=matriz"><i class="fa fa-calculator fa-fw fa-2x"></i> Matriz</a>
+                                <a href="?c=matriz"><i class="fa fa-table fa-fw fa-2x"></i> Matriz</a>
                             </li>
                             <li>
                                 <a href="?c=tipo_ensayo"><i class="fa fa-crop fa-fw fa-2x"></i>Tipo de Ensayo</a>
                             </li>
+
                             <li>
                                 <a href="?c=ensayo"><i class="fa fa-flask fa-fw fa-2x"></i> Ensayo</a>
                             </li>

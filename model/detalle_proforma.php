@@ -31,7 +31,10 @@ class detalle_proforma{
          ->from('detalle_proforma de')
          ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('de.fkproforma,de.fkensayo,p.nombre as ensayo,pr.nombre as proforma,p.costo')
+         ->join('metodo me on p.fkmetodo=me.pkmetodo')
+         ->join('unidad_medida u on p.fkunidad=u.pkunidad')
+         ->join('area a on p.fkarea=a.pkarea')
+         ->select('de.fkproforma,de.fkensayo,p.nombre as ensayo,pr.nombre as proforma,me.nombre as metodo,u.nombre as medida,a.nombre as area,p.costo')
          ->where('pr.pkproforma',$pkproforma)      
          ->fetchAll();
         } catch (Exception $e) {

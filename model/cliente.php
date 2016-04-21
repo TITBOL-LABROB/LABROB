@@ -38,6 +38,27 @@ class Cliente {
             die($e->getMessage());
         }
     } 
+    public function GetClienteProforma($pkproforma) {
+        try 
+        {
+
+            $sql = $this->pdo2->prepare("SELECT distinct c.pkcliente, c.contacto,c.fijo,c.celular,c.correo,c.fax,c.descuento,CAST(CASE
+             WHEN (c.fktipo_cliente=n.ci) 
+             THEN (n.nombre)
+  
+             WHEN (c.fktipo_cliente=j.nit) 
+             THEN (j.nombre)              
+             end  as char)as nombre_cliente
+             FROM cliente c,cliente_natural n,cliente_juridico j,proforma p
+             where p.fkcliente=c.pkcliente and p.pkproforma=$pkproforma and c.estado=1 and c.fktipo_cliente=n.ci or j.nit=c.fktipo_cliente 
+             group by c.pkcliente,c.contacto,c.fijo,c.celular,c.correo,c.fax,n.nombre,j.nombre");
+            $sql->execute();
+            return $sql->fetch(PDO::FETCH_OBJ);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    } 
 
     public function ListarNatural() {
         try 

@@ -22,6 +22,10 @@
         require_once 'view/proforma/proforma-detalle.php';
         require_once 'view/footer.php';
     }
+    public function Ver($proformas,$detalle,$detalleG,$area)
+    {
+        require_once 'view/proforma/proformaprint.php';
+    }
     public function Contrato($proformas,$clientes,$detalle,$parametros,$precios) {
         require_once 'view/header.php';
         require_once 'view/proforma/proforma-contrato.php';

@@ -17,6 +17,7 @@
                 <th style="width:180px; ">Rango Maximo</th>
                 <th style="width:180px; ">Rango Minimo</th>
                 <th style="width:180px; ">Limite Permitible</th>
+                <th style="width:180px; ">Acreditado</th>
                 <th style="width:180px; ">Area</th>
                 <th style="width:180px; ">Metodo</th>
                 <th style="width:50px;">Costo</th>
@@ -34,6 +35,7 @@
                     <td><?php echo $r->rango_maximo; ?></td>
                     <td><?php echo $r->rango_minimo; ?></td>
                     <td><?php echo $r->limite_permitible; ?></td>
+                    <td><?php echo $r->acreditado; ?></td>
                     <td><?php echo $r->area; ?></td>
                     <td><?php echo $r->metodo; ?></td>
                     <td><?php echo $r->costo; ?></td>

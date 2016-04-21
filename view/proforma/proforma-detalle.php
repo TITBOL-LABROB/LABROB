@@ -9,7 +9,7 @@
         datosG.push('<?php echo $r->fkgrupo; ?>');
     <?php endforeach ?>
 </script>
-<h1 class="page-header"><i class="fa fa-wrench fa-fw fa-2x"></i>Asignar ensayos</h1>
+<h1 class="page-header"><i class="fa fa-flask fa-fw fa-2x"></i>Asignar ensayos</h1>
 <input type="hidden" id="pkproforma" value="<?php echo $proformas->pkproforma; ?>">
 <div class="row">
     <div class="col-lg-12">
@@ -35,13 +35,7 @@
                                 <div class="form-group">
                                 <label>Cliente</label>
                                  <input type="text" name="fecha" class="form-control" value="<?php
-                                 foreach ($clientes as $c) 
-                                 {
-                                 	if($proformas->fkcliente==$c->pkcliente)
-                                 	{
-                                 		echo $c->nombre_cliente;
-                                 	}
-                                  }  ?>" readonly/>
+                                 echo $clientes->nombre_cliente; ?>" readonly/>
                                 </div>
                                </div>
                                <div class="col-md-4">  
@@ -150,6 +144,22 @@
                         </div>
                 </div>
             </div>
+            <div class="col-md-4"> 
+            <div class="form-group">
+                <label>Nro. de Muestras</label>
+                <input <input class="form-control" type="number" id="nro_muestras" value="<?php
+                                 echo $proformas->nro_muestras; ?>"  
+                       placeholder="Ingrese el metodo" required />
+            </div>
+            </div>
+             <div class="col-md-4"> 
+            <div class="form-group">
+                <label>Descuento</label>
+                <input <input class="form-control" type="text" id="descuento" value="<?php
+                                 echo $clientes->descuento; ?>"  
+                       placeholder="Ingrese el metodo" required />
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -233,9 +243,11 @@
 
      function Guardar(){
         var pkproforma = $('#pkproforma').val();
+        var nro_muestras = $('#nro_muestras').val();
+        var descuento = $('#descuento').val();
         datos = JSON.stringify(datos);
         datosG = JSON.stringify(datosG);
-        var ubicacion = '?c=proforma&a=AgregarEnsayo&pkproforma='+pkproforma+'&datos='+datos+'&datosG='+datosG;
+        var ubicacion = '?c=proforma&a=AgregarEnsayo&pkproforma='+pkproforma+'&datos='+datos+'&datosG='+datosG+'&nro_muestras='+nro_muestras+'&descuento='+descuento;
         window.location = ubicacion;
     }
 

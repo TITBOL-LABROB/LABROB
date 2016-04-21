@@ -55,12 +55,12 @@ class EnsayoController {
             'rango_maximo' => $_REQUEST['rango_maximo'],
             'rango_minimo' => $_REQUEST['rango_minimo'],
             'limite_permitible' => $_REQUEST['limite_permitible'],
-            'normas' => $_REQUEST['normas'],
+            'acreditado' => $_REQUEST['acreditado'],
             'fkarea' => $_REQUEST['pkarea'],
             'fktipo_ensayo' => $_REQUEST['fktipo_ensayo'],
             'costo' => $_REQUEST['costo'],
             'moneda' => $_REQUEST['moneda'],
-        ); 
+        );
         $this->model->Registrar($datos);
         header("Location: ?c=ensayo&item=ensayo&tarea=agregar&exito=si");
     }
@@ -73,7 +73,7 @@ class EnsayoController {
             'rango_maximo' => $_REQUEST['rango_maximo'],
             'rango_minimo' => $_REQUEST['rango_minimo'],
             'limite_permitible' => $_REQUEST['limite_permitible'],
-            'normas' => $_REQUEST['normas'],
+            'acreditado' => $_REQUEST['acreditado'],
             'fkarea' => $_REQUEST['pkarea'],
             'fktipo_ensayo' => $_REQUEST['fktipo_ensayo'],
             'costo' => $_REQUEST['costo'],

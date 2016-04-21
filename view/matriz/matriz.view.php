@@ -29,5 +29,7 @@
         require_once 'view/matriz/matriz-editar.php';
         require_once 'view/footer.php';
     }
+    
    }
+
   ?>

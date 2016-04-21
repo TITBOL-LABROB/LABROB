@@ -66,15 +66,7 @@ $(document).ready(function() {
                 <input   name="costo" class="form-control"  pattern="[0-9]{1,5}" value="<?php echo $ensayo->costo; ?>"
                        placeholder="Ingrese el Costo" required />
         </div>
-        <div class="form-group">
-                <label>Moneda</label>
-                  <select class="form-control" name="moneda" >
-            <option value="Bolivianos" <?php if ('Bolivianos'==$ensayo->moneda) echo "selected"; ?>>
-            <?php echo "Bolivianos" ?></option>
-            <option value="Dolares" <?php if ('Dolares'==$ensayo->moneda) echo "selected"; ?>>
-            <?php echo "Dolares" ?></option>
-        </select>
-        </div>  
+         
         </div>
         <div class="col-md-6">    
             
@@ -108,17 +100,35 @@ $(document).ready(function() {
                 <input type="number" min="0" name="limite_permitible" class="form-control"  value="<?php echo $ensayo->limite_permitible; ?>"
                        placeholder="Ingrese el limite de cuantificacion" required />
         </div>
+        <div class="col-md-4"> 
         <div class="form-group">
-                <label>Normas</label>
-                <textarea name="normas" class="form-control" style="height:110px;" 
-                       placeholder="Ingrese el limite de cuantificacion" required><?php echo $ensayo->normas; ?></textarea>
-        </div>         
+                <label>Moneda</label>
+                  <select class="form-control" name="moneda" >
+            <option value="Bolivianos" <?php if ('Bolivianos'==$ensayo->moneda) echo "selected"; ?>>
+            <?php echo "Bolivianos" ?></option>
+            <option value="Dolares" <?php if ('Dolares'==$ensayo->moneda) echo "selected"; ?>>
+            <?php echo "Dolares" ?></option>
+        </select>
+        </div>
+        </div> 
+        <div class="col-md-4">   
+            <div class="form-group">
+                <label>Con Acreditacion</label>
+                <input type="radio" id="RBCon" name="acreditado" value="Si" class="form-control" <?php  if($ensayo->acreditado=="Si") echo "checked" ?>  style="height: 30px; width: 30px;" />
+            </div>
+         </div>
+         <div class="col-md-4">     
+            <div class="form-group">
+                <label>Sin Acreditacion</label>
+                <input type="radio" id="RBSin" name="acreditado" value="No" class="form-control" <?php  if($ensayo->acreditado=="No") echo "checked" ?>  style="height: 30px; width: 30px;" />
+            </div>
+         </div>         
         </div>             
 </div>
         
 
         <hr/>
-        <div class="text-left">
+        <div class="text-center">
             <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
         </div>
     </div>

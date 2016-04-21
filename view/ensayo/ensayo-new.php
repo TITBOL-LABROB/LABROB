@@ -64,13 +64,7 @@ $(document).ready(function() {
                 <input   name="costo" class="form-control"  pattern="[0-9]{1,5}" 
                        placeholder="Ingrese el Costo" required />
         </div>
-        <div class="form-group">
-                <label>Moneda</label>
-                  <select class="form-control" name="moneda" >
-            <option value="Bolivianos">Bolivianos</option>
-            <option value="Dolares">Dolares</option>
-        </select>
-        </div>  
+         
         </div>
         <div class="col-md-6">    
             
@@ -104,14 +98,28 @@ $(document).ready(function() {
                 <input type="number" min="0" name="limite_permitible" class="form-control"  
                        placeholder="Ingrese el limite de cuantificacion" required />
         </div>
-        <div class="form-group">
-                <label>Normas</label>
-                <textarea name="normas" class="form-control" style="height:110px;" 
-                       placeholder="Ingrese el limite de cuantificacion" required></textarea>
-        </div>         
+        <div class="col-md-4">
+         <div class="form-group">
+                <label>Moneda</label>
+                  <select class="form-control" name="moneda" >
+            <option value="Bolivianos">Bolivianos</option>
+            <option value="Dolares">Dolares</option>
+        </select>
+        </div>
+        </div> 
+        <div class="col-md-4">   
+            <div class="form-group">
+                <label>Con Acreditacion</label>
+                <input type="radio" id="RBCon" name="acreditado" value="Si" class="form-control" checked style="height: 30px; width: 30px;" />
+            </div>
+         </div>
+         <div class="col-md-4">     
+            <div class="form-group">
+                <label>Sin Acreditacion</label>
+                <input type="radio" id="RBSin" name="acreditado" value="No" class="form-control" style="height: 30px; width: 30px;" />
+            </div>
+         </div>
         </div>    
-         
-        
     </div>            
 
 
