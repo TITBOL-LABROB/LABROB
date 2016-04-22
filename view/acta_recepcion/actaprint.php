@@ -22,53 +22,29 @@ $html="
  	<table width='100%'>
  		<tr>
  			<td width='40%'></td>
- 			<td width='40%' style='font-size:20px;'><b>PROFORMA</b></td>
- 			<td width='20%' style='text-align:center;font-size:20px;'><b>N* 22603</b></td>
+ 			<td width='40%' style='font-size:10px;'><b>ACTA RECEPCION DE MUESTRAS</b></td>
+ 			<td width='20%' style='text-align:center;font-size:10px;'><b>N* 26878</b></td>
  		</tr>
  	</table>
  	<table width='100%'>
  		<tr>
- 			<td width='40%'>FR-RE-002</td>
+ 			<td width='40%'>FR-RE-001</td>
  			<td width='35%'>Version: 02</td>
  			<td width='20%' style='text-align:right;'></td>
  		</tr>
  	</table>
 	<table width='100%' style='border-collapse: collapse; border:0.7px solid #000000; font-size:10px;' border='0'>
-		<tr>
-			<td width='25%'>Fecha:</td>
-			<td width='25%'>$fecha</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
+		<tr style='text-align:center;'>
+			<td width='15%'><b>Codigo de Muestra:</b></td>
+			<td width='35%'><b>Producto</b></td>
+			<td width='35%'><b>Marca</b></td>
+			<td width='15%'><b>Cantidad de Muestra:</b></td>
 		</tr>
 		<tr>
-			<td width='25%'>Solicitante:</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-		</tr>
-		<tr>
-			<td width='25%'>Cliente:</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-		</tr>
-		<tr>
-			<td width='25%'>Producto:</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-		</tr>
-		<tr>
-			<td width='25%'>Via Solicitud:</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-		</tr>
-		<tr>
-			<td width='25%'>Observaciones:</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-			<td width='25%'></td>
+			<td width='15%'>50570</td>
+			<td width='35%'>Jugo Lacteo</td>
+			<td width='35%'>Alimentacion Complementaria Escolar</td>
+			<td width='15%'>5250</td>
 		</tr>
 	</table>
 
@@ -173,7 +149,7 @@ $dompdf->render();
 $dompdf->set_paper('a4', 'portrait');
 $canvas = $dompdf->get_canvas();
 $font = Font_Metrics::get_font("Sans Serif", "bold");
-$canvas->page_text(540, 50, "Pagina: {PAGE_NUM} de {PAGE_COUNT}", $font, 10, array(0,0,0));
+$canvas->page_text(540, 33, "Pagina: {PAGE_NUM} de {PAGE_COUNT}", $font, 10, array(0,0,0));
 $dompdf->stream('my.pdf',array('Attachment'=>0));
 
 
