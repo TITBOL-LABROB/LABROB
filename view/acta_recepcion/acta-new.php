@@ -33,18 +33,19 @@
         <table class="table table-bordered table-hover" border="1">
             <thead style="background-color: black; color: white;">
                 <tr>
-                    <td style="width: 15%;"><b>Codigo de Muestra:</b></td>
+                    <td style="width: 10%;"><b>Codigo de Muestra:</b></td>
                     <td style="width: 35%;"><b>Producto:</b></td>
                     <td style="width: 35%;"><b>Marca:</b></td>
-                    <td style="width: 15%;"><b>Cantidad de Muestra:</b></td>
+                    <td style="width: 20%;" colspan="2"><b>Cantidad de Muestra:</b></td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>50570</td>
+                    <td><input type="text" class="form-control" name="Codigo1" value="50570" /></td>
                     <td><input type="text" class="form-control" name="producto1" value="Jugo Lacteo" /></td>
                     <td><input type="text" class="form-control" name="marca1" value="Alimentacion Complementaria Escolar" /></td>
-                    <td><input type="text" class="form-control" name="cantidad1" value="5250" />
+                    <td><input type="text" class="form-control" name="cantidad1" value="5250" /></td>
+                    <td width="10%">
                     <select class="form-control" name="fkmuestra" style="width: 100%;" >
                         <?php foreach ($muestra as $m): ?>
                             <option value="<?php echo $m->pkmuestra; ?>" ><?php echo $m->nombre; ?></option>
@@ -53,10 +54,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>50570</td>
+                    <td><input type="text" class="form-control" name="Codigo1" value="50571" /></td>
                     <td><input type="text" class="form-control" name="producto1" value="Jugo Lacteo" /></td>
                     <td><input type="text" class="form-control" name="marca1" value="Alimentacion Complementaria Escolar" /></td>
-                    <td><input type="text" class="form-control" name="cantidad1" value="5250" />
+                    <td><input type="text" class="form-control" name="cantidad1" value="5250" /></td>
+                    <td>
                     <select class="form-control" name="fkmuestra" style="width: 100%;" >
                         <?php foreach ($muestra as $m): ?>
                             <option value="<?php echo $m->pkmuestra; ?>" ><?php echo $m->nombre; ?></option>
@@ -93,6 +95,53 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="Direccion">Direccion</label>
+        <input type="text" name="Direccion" id="Direccion" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Ensayos_requeridos">Ensayos Requeridos:</label>
+        <input type="text" name="Ensayos_requeridos" id="Ensayos_requeridos" class="form-control" value="Segun Proforma N*.   " />
+    </div>
+
+    <div class="form-group">
+        <label for="Observacion">Observacion</label>
+        <textarea name="Observacion" id="Observacion" rows="3" class="form-control" style="resize: none;"></textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Responsable de la Muestra:</label>
+            <input type="text" class="form-control" name="Responsable_Muestra">
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-6">
+            <label>Fecha y hora de Recepcion:</label>
+            <input type="text" class="form-control" name="Fecha_Recepcion">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label>Fecha y Hora de entrega de resultados</label>
+        <input type="text" class="form-control" name="Fecha_Entrega">
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Entregado por:</label>
+            <input type="text" class="form-control" name="Entregado">
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-6">
+            <label>CI:</label>
+            <input type="text" class="form-control" name="CI_Entregado">
+        </div>
+    </div>
     <hr/>
     <div class="text-center">
         <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-floppy-o"></i> Guardar</button>

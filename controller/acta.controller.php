@@ -13,14 +13,13 @@ class ActaController {
     }
 
     public function Index() {
-        //$listaroles = $this->model->Listar();        
-        //$this->vista->View();
-        $muestra=$this->model->Listar_Muestras();
-        $this->vista->Nuevo($muestra);
+        $lista=$this->model->Listar();
+        $this->vista->View($lista);
     }
 
     public function Nuevo() {
-        $this->vista->Nuevo();
+        $muestra=$this->model->Listar_Muestras();
+        $this->vista->Nuevo($muestra);
     }
 
     public function Editar() {

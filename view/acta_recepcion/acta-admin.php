@@ -1,11 +1,11 @@
-<h1 class="page-header">Area</h1>
+<h1 class="page-header">Acta de Recepcion de Muestras</h1>
 
 
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default" style="overflow: scroll; height: 500px">
             <div class="panel-heading">
-                <a class="btn btn-primary" href="?c=area&a=nuevo"><i class="fa fa-plus"></i> Nuevo Area</a>
+                <a class="btn btn-primary" href="?c=acta&a=nuevo"><i class="fa fa-plus"></i> Nueva Acta</a>
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">
