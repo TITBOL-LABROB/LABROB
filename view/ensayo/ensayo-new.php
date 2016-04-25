@@ -67,24 +67,36 @@ $(document).ready(function() {
          
         </div>
         <div class="col-md-6">    
-            
-        <div class="form-group">
-                <label>Area</label>
-                <select class="form-control" id="pkarea" name="pkarea" >
-                    <?php foreach ($areas as $l): ?>
-                        <option value="<?php echo $l->pkarea; ?>" ><?php echo $l->nombre; ?></option>
+            <div class="form-group">
+                    <label>Area</label>
+                    <select class="form-control" id="pkarea" name="pkarea" >
+                        <?php foreach ($areas as $l): ?>
+                            <option value="<?php echo $l->pkarea; ?>" ><?php echo $l->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            <div class="form-group">
+                    <label>Tipo de Ensayo</label>
+                    <select class="form-control" id="pktipo_ensayo" name="fktipo_ensayo" >
+                        <?php foreach ($tipos as $t): ?>
+                        <option value="<?php echo $t->pktipo_ensayo; ?>" <?php if ($t->fkarea == $l->pkarea) echo "selected"; ?> ><?php echo $t->nombre; ?></option>
                     <?php endforeach; ?>
-                </select>
+                    </select>
+                </div>
+             <div class="form-group">
+                    <label>Metodo</label>
+                    <select class="form-control" name="fkmetodo" >
+                        <?php foreach ($metodos as $m): ?>
+                            <option value="<?php echo $m->pkmetodo; ?>" ><?php echo $m->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                   </div>   
+            <div class="form-group">
+                    <label>Limite Permitible</label>
+                    <input type="number" min="0" name="limite_permitible" class="form-control"  
+                           placeholder="Ingrese el limite de cuantificacion" required />
             </div>
-
-        <div class="form-group">
-                <label>Tipo de Ensayo</label>
-                <select class="form-control" id="pktipo_ensayo" name="fktipo_ensayo" >
-                    <?php foreach ($tipos as $t): ?>
-                    <option value="<?php echo $t->pktipo_ensayo; ?>" <?php if ($t->fkarea == $l->pkarea) echo "selected"; ?> ><?php echo $t->nombre; ?></option>
-                <?php endforeach; ?>
-                </select>
-            </div>
+<<<<<<< HEAD
          <div class="form-group">
                 <label>Metodo</label>
                 <select class="form-control" name="fkmetodo" >
@@ -120,6 +132,14 @@ $(document).ready(function() {
             </div>
          </div>
         </div>    
+=======
+            <div class="form-group">
+                    <label>Normas</label>
+                    <textarea name="normas" class="form-control" style="height:110px; resize:none;" 
+                           placeholder="Ingrese el limite de cuantificacion" required></textarea>
+            </div>        
+        </div>          
+>>>>>>> origin/master
     </div>            
 
 

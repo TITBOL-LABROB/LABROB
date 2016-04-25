@@ -3,6 +3,8 @@ require_once 'view/matriz/matriz.view.php';
 require_once 'model/matriz.php';
 require_once 'model/detalle_matriz.php';
 require_once 'model/ensayo.php';
+require_once 'model/norma.php';
+require_once 'model/detalle_matriz_norma.php';
 
 class MatrizController {
 
@@ -10,20 +12,26 @@ class MatrizController {
     private $vista;
     private $detalle;
     private $ensayo;
+    private $norma;
+    private $detalleN;
 
     public function __CONSTRUCT() {
         $this->model = new Matriz();
         $this->vista = new MatrizView();
         $this->detalle=new Detalle_Matriz();
         $this->ensayo=new ensayo();
+        $this->norma=new Norma();
+        $this->detalleN=new detalle_matriz_norma();
     }
 
     public function Index() {
         $listaroles = $this->model->Listar(); 
         $ensayos=$this->ensayo->Listar();
-        $detalle=$this->detalle->listar();  
-        $precios=$this->detalle->listaPrecio();    
-        $this->vista->View($listaroles,$ensayos,$detalle,$precios);       
+        $detalle=$this->detalle->listar();
+        $normas=$this->norma->Listar();  
+        $precios=$this->detalle->listaPrecio();
+        $detalleN=$this->detalleN->Listar();    
+        $this->vista->View($listaroles,$ensayos,$detalle,$precios,$normas,$detalleN);       
     }
 
     public function Nuevo() {
@@ -48,7 +56,6 @@ class MatrizController {
     }
     public function Guardar_Cambios() {
       
-
         $datos = array(
             'pkmatriz'=> $_REQUEST['pkmatriz'],
             'nombre' => $_REQUEST['nombre'],
@@ -65,6 +72,8 @@ class MatrizController {
         $datos = array(
             'fkmatriz' => $_REQUEST['pkmatriz'],
             'fkensayo' => $_REQUEST['pkensayo'],
+            'fknorma' => $_REQUEST['pknorma'],
+            'limite' => $_REQUEST['limite'],
             'costo' => $ensayo->costo
         );
     
@@ -85,6 +94,17 @@ class MatrizController {
         );
         $this->detalle->Eliminar($datos);
         header('Location: ?c=matriz&item=ensayo de una matriz&tarea=eliminar&exito=si');
+    }
+
+    public function AgregarNormaEnsayo()
+    {
+        $datos = array(
+            'fkdetalle_matriz' => $_REQUEST['pkdetalle_matriz'],
+            'fknorma' => $_REQUEST['pknorma'],
+            'limite' => $_REQUEST['limite']
+        );
+        $this->detalleN->Registrar($datos);
+         header('Location: ?c=matriz&item=norma asociada a un ensayo&tarea=eliminar&exito=si');
     }
 
     public function Eliminar() {

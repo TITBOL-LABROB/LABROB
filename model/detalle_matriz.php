@@ -4,10 +4,11 @@
 class Detalle_Matriz{
 
     private $pdo;
-
+    private $pdo2;
     public function __CONSTRUCT() {
         try {
             $this->pdo = Singleton::getInstance()->getPDO();
+            $this->pdo2 = Singleton::getInstance()->getPDO2();
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -15,12 +16,19 @@ class Detalle_Matriz{
 
     public function Listar() {
         try {
-           return $this->pdo
-         ->from('detalle_matriz dm')
-         ->join('ensayo p on dm.fkensayo=p.pkensayo')
-         ->join('matriz m on dm.fkmatriz=m.pkmatriz')
-         ->select('dm.fkmatriz,dm.fkensayo,p.nombre as ensayo,m.nombre as matriz,dm.costo')      
-         ->fetchAll();
+           $sql = $this->pdo2->prepare("SELECT distinct dm.pkdetalle_matriz,dm.fkmatriz,dm.fkensayo,e.nombre ensayo,me.nombre as metodo,u.nombre as medida,m.nombre as matriz,dm.costo,dm.limite,
+             CAST(case 
+               when dm.fknorma is null
+               then ''
+               when dm.fknorma>0
+               then CONCAT_WS('-',n.codigo,n.gestion,n.acapite) 
+               end as char) as norma
+            FROM detalle_matriz dm,ensayo e,matriz m,unidad_medida u,metodo me,norma n
+            WHERE (dm.fknorma=n.pknorma or dm.fknorma is null) 
+            and e.pkensayo=dm.fkensayo and m.pkmatriz=dm.fkmatriz and u.pkunidad=e.fkunidad
+            and me.pkmetodo=e.fkmetodo");
+            $sql->execute();
+            return $sql->fetchAll(PDO::FETCH_OBJ);
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -86,4 +94,18 @@ class Detalle_Matriz{
         }
     }
 }
+
+/*
+SELECT distinct dm.fkmatriz,dm.fkensayo,e.nombre ensayo,me.nombre as metodo,u.nombre as medida,m.nombre as matriz,dm.costo,dm.limite,
+             CAST(case 
+               when dm.fknorma is null
+               then ''
+               when dm.fknorma>0
+               then CONCAT_WS('-',n.codigo,n.gestion,n.acapite) 
+               end as char) as norma
+            FROM detalle_matriz dm,ensayo e,matriz m,unidad_medida u,metodo me,norma n
+            WHERE (dm.fknorma=n.pknorma or dm.fknorma is null) 
+            and e.pkensayo=dm.fkensayo and m.pkmatriz=dm.fkmatriz and u.pkunidad=e.fkunidad
+            and me.pkmetodo=e.fkmetodo
+*/
 ?>

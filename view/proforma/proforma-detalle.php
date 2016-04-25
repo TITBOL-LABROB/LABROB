@@ -1,13 +1,8 @@
 <script>
-    var datos = [];
-    <?php foreach ($detalle as $r): ?>
-        datos.push('<?php echo $r->fkensayo; ?>');
-    <?php endforeach ?>
-
+    var datosM = [];
     var datosG = [];
-    <?php foreach ($detalleG as $r): ?>
-        datosG.push('<?php echo $r->fkgrupo; ?>');
-    <?php endforeach ?>
+    var datos = [];
+    var datos2 = [];
 </script>
 <h1 class="page-header"><i class="fa fa-flask fa-fw fa-2x"></i>Asignar ensayos</h1>
 <input type="hidden" id="pkproforma" value="<?php echo $proformas->pkproforma; ?>">
@@ -53,94 +48,50 @@
                                </div>
                               </div>  
                             </div>
-                            <div id="<?php echo $proformas->pkproforma; ?>" class="panel-body">
-                                <div class="panel-body">
-                                  <div class="col-md-6">
-                                    <label >Matrices</label>
-                                    <div class="form-group">
-                                        <select multiple="multiple"  id="parcmb">
+                           <div class="col-md-6"> 
+                            <div id="cmbM" class="panel-body">
+                                    <div class="btn-group">
+                                        <select  class="parcmb" id="parcmb<?php echo $proformas->pkproforma; ?>">
                                             <?php foreach ($matrices as $m): ?>
-                                                <optgroup label="<?php echo $m->nombre; ?>">
-                                               <?php foreach ($detalleM as $dem): ?>
-                                                <?php if($dem->fkmatriz==$m->pkmatriz){  ?>
                                                 <option
-                                              <?php if (in_array($dem->fkensayo, $listaRegistrados)){ ?>
-                                            selected="selected" <?php }?>
-                                    value="<?php echo $dem->fkensayo;?>,<?php echo $dem->ensayo;?>,<?php echo $dem->costo;?>"><?php echo $dem->ensayo;?></option>
-                                    <?php }?>
-                                            <?php endforeach ?>
-                                            </optgroup>
+                                         value="<?php echo $m->pkmatriz;?>"><?php echo $m->nombre;?></option>
                                             <?php endforeach ?>
                                         </select>
-                                    </div>
-                                   </div>
-                                   <div class="col-md-6"> 
-                                    <label >Grupos de Ensayos</label>
-                                    <div class="form-group">
-                                        <select multiple="multiple"  id="parcmb2">
-                                            <?php foreach ($grupos as $p): ?>
-                                                <option <?php if (in_array($p->pkgrupo_ensayo, $listaRegistradosG)){ ?>
-                                            selected="selected" <?php }?>
-                                    value="<?php echo $p->pkgrupo_ensayo;?>,<?php echo $p->nombre;?>,<?php echo $p->costo;?>"><?php echo $p->nombre;?></option>
-                                            <?php endforeach ?>
-                                        </select>
-                                       
-                                    </div>
-                                   </div>
-                                 <div class="col-md-12">   
-                                 <div class="table-responsive">
-                                        <table class="table" >
-                                            <thead>
-                                           <tr><th colspan="3" style="text-align:center; text-decoration: underline;">Ensayos de Matrices</th>
-                                              <th></th>
-                                           </tr>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nombre</th>
-                                                <th>Costo</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="cuerpo">
-                                            <?php foreach ($detalle as $r): ?>
-                                             <tr id="<?php echo $r->fkensayo; ?>">
-                                               <td ><?php echo $r->fkensayo; ?></td>
-                                               <td><?php echo $r->ensayo; ?></td>
-                                               <td><?php echo $r->costo; ?></td>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                        </table>
-                                    </div>
-                                   </div> 
-
-                                    <div class="col-md-12">   
-                                 <div class="table-responsive">
-                                        <table class="table" >
-                                            <thead>
-                                           <tr><th colspan="3" style="text-align:center; text-decoration: underline;">Grupo de Ensayos</th>
-                                           </tr>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nombre</th>
-                                                <th>Costo</th>
-                                                <th></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="cuerpo2">
-                                            <?php foreach ($detalleG as $r): ?>
-                                             <tr id="<?php echo $r->fkgrupo; ?>">
-                                               <td ><?php echo $r->fkgrupo; ?></td>
-                                               <td ><?php echo $r->grupo; ?></td>
-                                               <td><?php echo $r->costo; ?></td>
-                                            </tr>
-                                            <?php endforeach ?>
-                                        </tbody>
-                                        </table>
-                                    </div>
-                                   </div>       
+                                        <a href="#" onclick="AgregarMatriz('parcmb<?php echo $proformas->pkproforma;?>')" class="btn btn-outline btn-primary" id="agregar<?php echo $proformas->pkproforma; ?>"><i class="fa fa-plus"></i> Agregar Matriz</a>
                                 </div>
                             </div>
+                           </div> 
+                           <div class="col-md-6"> 
+                            <div id="cmbG" class="panel-body">
+                                    <div class="btn-group">
+                                        <select  class="parcmb" id="parcmbG<?php echo $proformas->pkproforma; ?>">
+                                            <?php foreach ($grupos as $g): ?>
+                                                <option value="<?php echo $g->pkgrupo_ensayo;?>"><?php echo $g->nombre;?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        <a href="#" onclick="AgregarGrupo('parcmbG<?php echo $proformas->pkproforma;?>')" class="btn btn-outline btn-primary" id="agregar<?php echo $proformas->pkproforma; ?>"><i class="fa fa-plus"></i> Agregar Grupo</a>
+                                </div>
+                            </div>
+                           </div> 
+                            <!--//Matrices-->
+                            <div class="panel-group" style="background-color: #F5F5F5;">
+                              <div class="panel-heading">
+                                <label style="text-decoration: underline; text-align: center;">Matrices Ensayos </label>
+                              </div>
+                            <div  class="panel-body" id="Matrices" >
+                                
+                            </div>
+                           </div>
+
+                           <!--//Grupo-->
+                            <div class="panel-group" style="background-color: #F5F5F5;">
+                              <div class="panel-heading">
+                                <label style="text-decoration: underline; text-align: center;">Grupos Ensayos</label>
+                              </div>
+                            <div  class="panel-body" id="Grupos">
+                                
+                            </div>
+                           </div>  
                         </div>
                 </div>
             </div>
@@ -170,116 +121,159 @@
 
 <script>
     $(document).ready(function() {
-       $('#parcmb').multiselect({
-            enableCollapsibleOptGroups: true,
-            enableFiltering: true,
+       $('.parcmb').multiselect({
+             enableFiltering: true,
             enableCaseInsensitiveFiltering: true,
-            filterPlaceholder: 'Buscar',
-            selectAllText: 'Seleccionar todo',
-            nonSelectedText : 'Ningun sistema seleccionado',
-            allSelectedText: 'Todos los sistemas seleccionados',
-            nSelectedText: 'seleccionados',
-            checkboxName: 'multiselect[]',
-            onChange: function(option, checked) {
-                var sd = $(option).val();
-                var sucursal = sd.split(',');
-                if(checked === true) {
-                    $('#cuerpo').append(NuevaFila(sucursal));
-                }else{
-                    var indice = jQuery.inArray(sucursal[0], datos);
-                    datos.splice(indice, 1);
-                    $('#cuerpo tr#' + sucursal[0]).remove();
-                }
-            }
-        });
-
-       $('#parcmb2').multiselect({
-            enableCollapsibleOptGroups: true,
-            enableFiltering: true,
-            enableCaseInsensitiveFiltering: true,
-            filterPlaceholder: 'Buscar',
-            selectAllText: 'Seleccionar todo',
-            nonSelectedText : 'Ningun sistema seleccionado',
-            allSelectedText: 'Todos los sistemas seleccionados',
-            nSelectedText: 'seleccionados',
-            checkboxName: 'multiselect[]',
-            onChange: function(option, checked) {
-                var sd = $(option).val();
-                var grupo = sd.split(',');
-                if(checked === true) {
-                    $('#cuerpo2').append(NuevaFilaG(grupo));
-                }else{
-                    var indice = jQuery.inArray(grupo[0], datosG);
-                    datosG.splice(indice, 1);
-                    $('#cuerpo2 tr#' + grupo[0]).remove();
-                }
-            }
+            filterPlaceholder: 'Buscar'
         });
     });
-    function NuevaFila(sucursal){
-        datos.push(sucursal[0]);
-        var fila = "";
-        fila += "<tr id='" + sucursal[0] + "'>";
-        $.each(sucursal, function (index, s) {
-            fila += "<td>";
-            fila += s;
-            fila += "</td>";
-        });
-        fila += "</tr>";
-        return fila;
-    }
-    function NuevaFilaG(grupo){
-        datosG.push(grupo[0]);
-        var fila = "";
-        fila += "<tr id='" + grupo[0] + "'>";
-        $.each(grupo, function (index, s) {
-            fila += "<td>";
-            fila += s;
-            fila += "</td>";
-        });
-        fila += "</tr>";
-        return fila;
-    }
 
      function Guardar(){
         var pkproforma = $('#pkproforma').val();
         var nro_muestras = $('#nro_muestras').val();
         var descuento = $('#descuento').val();
+        CargarValores(); return;
         datos = JSON.stringify(datos);
-        datosG = JSON.stringify(datosG);
-        var ubicacion = '?c=proforma&a=AgregarEnsayo&pkproforma='+pkproforma+'&datos='+datos+'&datosG='+datosG+'&nro_muestras='+nro_muestras+'&descuento='+descuento;
+        datos2 = JSON.stringify(datos2);
+
+        var ubicacion = '?c=proforma&a=AgregarEnsayo&pkproforma='+pkproforma+'&datos='+datos+'&datosG='+datos2+' &nro_muestras='+nro_muestras+'&descuento='+descuento;
         window.location = ubicacion;
     }
 
-    function AgregarEnsayo(pkproforma,idcmb){
-        $('#agregar'+pkproforma).html("<i class='fa fa-spinner fa-spin'></i> Agregar Ensayo");
-        $('#agregar'+pkproforma).attr("disabled", "disabled");
-        var pkensayo =  $('#'+idcmb).val();
-        var ubicacion = '?c=proforma&a=Agregarensayo&pkproforma='+pkproforma+'&pkensayo='+pkensayo;
-        window.location = ubicacion;
-    }
-
-    function QuitarEnsayo(pkproforma, ts, pkensayo, p){
-        swal({
-                title: 'Quitar '+ p,
-                text: '¿Esta seguro que desea quitar el ensayo ' + p + ' de la proforma' + ts + '?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si',
-                cancelButtonText: 'No',
-                confirmButtonClass: 'confirm-class',
-                cancelButtonClass: 'cancel-class',
-                closeOnConfirm: true,
-                closeOnCancel: true
-            },
-            function(isConfirm) {
-                if (isConfirm) {
-                    var ubicacion = '?c=proforma&a=Quitarensayo&pkproforma='+pkproforma+'&pkensayo='+pkensayo;
-                    window.location = ubicacion;
-                }
+    function AgregarEnsayoMatriz(pkmatriz,idcmb){
+         var cmb = $('#'+idcmb).val();
+         var grupo = cmb.split(',');
+         var c=0;
+         var fila=""; var esta=null;
+       //verifica si ya se encuantra este ensayo  
+        var esta=$('#tablaM'+pkmatriz+' #'+grupo[0]).attr('id'); 
+        if(esta!=null){return;}  
+         
+        fila += "<tr id='" + grupo[0] + "'>";
+        $.each(grupo, function (index, s) {
+            if(c>0)
+            {
+             fila += "<td>";
+             fila += s;
+             fila += "</td>";
             }
-        );
+            c++;
+        });
+        var quitar="<td><a href='#' onclick='QuitarEnsayoMatriz("+pkmatriz+","+grupo[0]+")' class='btn btn-outline btn-danger btn-circle'  style='color: darkred'><i class='fa fa-trash'></i></a></td>";
+        fila+=quitar;
+        fila += "</tr>";
+        $('#tablaM'+pkmatriz).append(fila);
+      
+    }
+
+    function CargarValores()
+    {  
+        $.each(datosM, function (index, s) {
+            var rows= $('#tablaM'+s+' tr');
+            for (var i = 0; i < rows.length; i++)
+             {
+                id= $(rows[i]).attr('id');
+                datos.push(id);
+             }
+        });
+
+        console.log(datos);  console.log(datosG); 
+    }
+
+    function AgregarEnsayoGrupo(pkgrupo,idcmb){
+         var cmb = $('#'+idcmb).val();
+         var grupo = cmb.split(',');
+         var c=0;
+         var fila="";
+         //verifica si ya se encuantra este ensayo  
+        var esta=$('#tablaG'+pkgrupo+' #'+grupo[0]).attr('id'); 
+        if(esta!=null){return;}  
+         datosG.push(grupo[0]);
+        fila += "<tr id='" + grupo[0] + "'>";
+        $.each(grupo, function (index, s) {
+            if(c>0)
+            {
+             fila += "<td>";
+             fila += s;
+             fila += "</td>";
+            }
+            c++;
+        });
+        var quitar="<td><a href='#' onclick='QuitarEnsayoGrupo("+pkgrupo+","+grupo[0]+")' class='btn btn-outline btn-danger btn-circle'  style='color: darkred'><i class='fa fa-trash'></i></a></td>";
+        fila+=quitar;
+        fila += "</tr>";
+        $('#tablaG'+pkgrupo).append(fila);
+    }
+
+    function QuitarEnsayoMatriz(idtabla,idfila)
+    {    
+        var indice = jQuery.inArray(idfila, datos);
+         datos.splice(indice,1);  
+         $('#tablaM' + idtabla+' #'+idfila).remove();
+    }
+
+    function QuitarEnsayoGrupo(idtabla,idfila)
+    {    
+         var indice = jQuery.inArray(idfila, datos);
+         datos.splice(indice,1);  
+         $('#tablaG' + idtabla+' #'+idfila).remove();
+    }
+
+    function AgregarMatriz($pkproforma)
+    {
+        var $codigo=$('#'+$pkproforma).val();
+          var esta=$('#matriz'+$codigo).attr('id'); 
+        if(esta!=null){return;}
+        datosM.push($codigo);
+        if($codigo!=null){
+        var datos = {
+                    matrices: $codigo
+                };
+                
+                $.ajax({
+                data:  datos,
+                url:   'model/AddMatrices.php',
+                type:  'post',
+                success:function (response) {
+
+                        $("#Matrices").append(response);
+                }
+              })
+          }
+    }
+    function AgregarGrupo($pkproforma)
+    {
+        var $codigo=$('#'+$pkproforma).val();
+         var esta=$('#grupo'+$codigo).attr('id'); 
+        if(esta!=null){return;}  
+        datosG.push($codigo);
+        if($codigo!=null){
+        var datos = {
+                    grupos: $codigo
+                };
+                
+                $.ajax({
+                data:  datos,
+                url:   'model/AddGrupos.php',
+                type:  'post',
+                success:function (response) {
+
+                        $("#Grupos").append(response);
+                }
+              })
+          } 
+    }
+    function EliminarMatriz(pkmatriz)
+    {
+      var indice = jQuery.inArray(pkmatriz, datosM);
+         datosM.splice(indice,1);   
+     $('#matriz' + pkmatriz).remove();
+    }
+
+    function EliminarGrupo(pkgrupo)
+    {
+      var indice = jQuery.inArray(pkgrupo, datosG);
+        datosG.splice(indice,1);
+     $('#grupo' + pkgrupo).remove();
     }
 </script>

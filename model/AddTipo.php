@@ -35,4 +35,45 @@ if(isset($_POST['nombre_institucion'])) {
     echo json_encode($datos);
     return;
 }
+
+if(isset($_POST['pkdetalle_matriz'])&&isset($_POST['pknorma'])) {
+       $pkdetalle_matriz=$_POST['pkdetalle_matriz'];
+       $limite="";
+        if(isset($_POST['limite'])) $limite=$_POST['limite'];
+
+       $datos=array(
+            'fkdetalle_matriz'=> $_POST['pkdetalle_matriz'],
+            'fknorma'=> $_POST['pknorma'],
+            'limite'=> $limite
+        );
+
+       if(isset($_POST['delete']))
+       {
+        $fluent->deleteFrom('detalle_matriz_norma')
+                     ->where('fkdetalle_matriz=? and fknorma=?', $datos['fkdetalle_matriz'],$datos['fknorma'])
+                     ->execute();
+       }else{
+        $fluent->insertInto('detalle_matriz_norma', $datos)->execute();
+       }
+        
+
+            $result=$fluent->from('detalle_matriz_norma dm')
+                 ->join('detalle_matriz d on dm.fkdetalle_matriz=d.pkdetalle_matriz')
+                 ->join('norma n on dm.fknorma=n.pknorma')
+                 ->where('fkdetalle_matriz',$pkdetalle_matriz)
+                 ->select("dm.fkdetalle_matriz,dm.fknorma,CONCAT_WS('-',n.codigo,n.gestion,n.acapite) as norma")      
+         ->fetchAll();
+        $html="";
+                                       foreach ($result as $de) 
+                                       {
+                                             $html.="<tr><td>".$de->norma."</td>";
+                                             $html.="<td>".$de->limite."</td>";
+                                             $html.="<td>
+                                                        <a href='#' onclick='QuitarEnsayoNorma($de->fkdetalle_matriz,$de->fknorma)' class='btn btn-outline btn-danger btn-circle'  style='color: darkred'><i class='fa fa-trash'></i></a>
+                                                    </td></tr>";
+                                       } 
+     echo $html;  
+     return;
+}
+
 ?>

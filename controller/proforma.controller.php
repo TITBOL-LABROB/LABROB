@@ -56,19 +56,10 @@ class ProformaController {
         $proformas = $this->model->Obtener($_REQUEST['id']);
         $grupos=$this->grupo->Listar();
         $matrices=$this->matriz->Listar();
+        $ensayos=$this->ensayo->Listar();
         $clientes = $this->cliente->GetClienteProforma($_REQUEST['id']);
         $instituciones=$this->institucion->Listar();
-        $detalle = $this->detalle->ListarProforma($_REQUEST['id']);
-        $detalleG = $this->detalleG->ListarProforma($_REQUEST['id']);
-        $detalleM = $this->detalleM->Listar();
-        $listaRegistrados = array(); $listaRegistradosG = array();
-        foreach ($detalle as $d) {
-          array_push($listaRegistrados, $d->fkensayo);
-        }
-        foreach ($detalleG as $d) {
-          array_push($listaRegistradosG, $d->fkgrupo);
-        }      
-        $this->vista->Detalle($proformas,$clientes,$detalle,$detalleG,$detalleM,$grupos,$matrices,$instituciones,$listaRegistrados,$listaRegistradosG);
+        $this->vista->Detalle($proformas,$clientes,$ensayos,$grupos,$matrices,$instituciones);
     }
     
     public function contrato() 
@@ -124,7 +115,7 @@ class ProformaController {
             'diriguido' => $_REQUEST['diriguido'],
         ); 
         $pkproforma=$this->model->Registrar($datos);
-        header("Location: ?c=proforma&item=proforma&tarea=agregar&exito=si");
+        header("Location: ?c=proforma&a=detalle&id=$pkproforma");
     }
      
      public function getCodigo($last)
