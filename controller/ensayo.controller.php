@@ -51,10 +51,8 @@ class EnsayoController {
         $datos = array(
             'nombre' => $_REQUEST['nombre'],
             'fkunidad' => $_REQUEST['pkunidad'],
-            'fkmetodo' => $_REQUEST['fkmetodo'],
             'rango_maximo' => $_REQUEST['rango_maximo'],
             'rango_minimo' => $_REQUEST['rango_minimo'],
-            'limite_permitible' => $_REQUEST['limite_permitible'],
             'acreditado' => $_REQUEST['acreditado'],
             'fkarea' => $_REQUEST['pkarea'],
             'fktipo_ensayo' => $_REQUEST['fktipo_ensayo'],
@@ -69,10 +67,8 @@ class EnsayoController {
         $datos = array(
             'pkensayo' => $_REQUEST['pkensayo'],
             'fkunidad' => $_REQUEST['pkunidad'],
-            'fkmetodo' => $_REQUEST['fkmetodo'],
             'rango_maximo' => $_REQUEST['rango_maximo'],
             'rango_minimo' => $_REQUEST['rango_minimo'],
-            'limite_permitible' => $_REQUEST['limite_permitible'],
             'acreditado' => $_REQUEST['acreditado'],
             'fkarea' => $_REQUEST['pkarea'],
             'fktipo_ensayo' => $_REQUEST['fktipo_ensayo'],

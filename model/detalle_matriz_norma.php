@@ -49,12 +49,12 @@ class detalle_matriz_norma{
         }
     }
 
-    public function Eliminar($datos)
+    public function Eliminar($pkdetalle_matriz)
     {
       try 
         {
            $this->pdo->deleteFrom('detalle_matriz_norma')
-                     ->where('fkensayo=? and fkmatriz=?', $datos['fkensayo'],$datos['fkmatriz'])
+                     ->where('fkdetalle_matriz', $pkdetalle_matriz)
                      ->execute();
         } catch (Exception $e) {
             die($e->getMessage());

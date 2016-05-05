@@ -3,6 +3,9 @@ require_once 'view/grupo_ensayo/grupo_ensayo.view.php';
 require_once 'model/grupo_ensayo.php';
 require_once 'model/detalle_grupo.php';
 require_once 'model/ensayo.php';
+require_once 'model/metodo.php';
+require_once 'model/norma.php';
+require_once 'model/detalle_grupo_norma.php';
 
 class Grupo_ensayoController {
 
@@ -10,20 +13,30 @@ class Grupo_ensayoController {
     private $vista;
     private $detalle;
     private $ensayo;
+    private $metodo;
+    private $norma;
+    private $detalleN;
+
 
     public function __CONSTRUCT() {
         $this->model = new Grupo_ensayo();
         $this->vista = new Grupo_ensayoView();
         $this->detalle=new Detalle_Grupo();
         $this->ensayo=new ensayo();
+        $this->metodo=new metodo();
+        $this->norma=new norma();
+        $this->detalleN=new detalle_grupo_norma();
     }
 
     public function Index() {
         $listaroles = $this->model->Listar();
         $ensayos=$this->ensayo->Listar();
         $detalle=$this->detalle->listar();
+        $detalleN=$this->detalleN->listar();
+        $metodos=$this->metodo->Listar();
+        $normas=$this->norma->Listar();
         $precios=$this->detalle->listaPrecio1();      
-        $this->vista->View($listaroles,$ensayos,$detalle,$precios);
+        $this->vista->View($listaroles,$ensayos,$metodos,$normas,$detalle,$detalleN,$precios);
     }
 
     public function Nuevo() {
@@ -105,6 +118,8 @@ class Grupo_ensayoController {
             'fkgrupo' => $_REQUEST['pkgrupo_ensayo'],
             'fkensayo' => $_REQUEST['pkensayo']
         );
+        $detalle=$this->detalle->GetDetalle($datos); 
+        $this->detalleN->Eliminar($detalle->pkdetalle_grupo);
         $this->detalle->Eliminar($datos);
         header('Location: ?c=grupo_ensayo&item=ensayo para de un grupo&tarea=eliminar&exito=si');
     }

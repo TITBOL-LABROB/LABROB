@@ -1,5 +1,11 @@
 <script>
     $(document).ready(function() {
+        $('.parcmb').multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            filterPlaceholder: 'Buscar',
+            maxHeight: 800
+        });
     var $institucion = $("#institucion");
      $( "#RBSin" ).change(function() {
             $institucion.attr('disabled',true);
@@ -24,19 +30,17 @@
     <input type="hidden" name="pkproforma" value="0" />
    <div class="row">
         <div class="col-md-6">
-             <div class="form-group">
-                <label>Fecha Solicitud</label>
-                <input <input class="form-control" type="date" name="fecha"  
-                       placeholder="Ingrese el metodo" required />
-            </div>
+             
             
             <div class="form-group">
                 <label>Cliente</label>
-                 <select class="form-control" name="pkcliente" >
+               <div  class="form-group"> 
+                 <select class="parcmb" name="pkcliente" >
                     <?php foreach ($clientes as $c): ?>
                         <option value="<?php echo $c->pkcliente; ?>" ><?php if($c->nombre_cliente!='') echo $c->nombre_cliente; ?></option>
                     <?php endforeach; ?>
                 </select>
+               </div> 
             </div>
             <div class="form-group">
                 <label>Solicitante</label>
@@ -55,11 +59,6 @@
             </div>
         </div>
         <div class="col-md-6">     
-            <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" name="nombre" class="form-control" 
-                       placeholder="Ingrese el Nombre" required />
-            </div>
          <div class="col-md-6">   
             <div class="form-group">
                 <label>Con Institucion</label>
@@ -80,19 +79,27 @@
             <?php } ?>  
         </select>
             </div>
-            
-           
-            <div class="form-group">
-                <label>Dias de Presentacion de informe</label>
-                <input type="text" name="dias" class="form-control"  
-                       placeholder="Ingrese los dias de presentacion de informe" required />
-            </div>
         <div class="form-group">
                 <label>A quien va diriguido</label>
                   <input type="text" name="diriguido" class="form-control"  
                        placeholder="A quien va diriguido el informe" required />
         </div>
-    </div>            
+    </div>    
+    <div class="col-md-3">  
+        <div class="form-group">
+                <label>Dias de Presentacion de informe</label>
+                <input type="text" name="dias" class="form-control"  
+                       placeholder="Dias de presentacion de informe" required />
+        </div>
+    </div>
+    <div class="col-md-3">     
+        <div class="form-group">
+                <label>Fecha Solicitud</label>
+                <input <input class="form-control" type="date" name="fecha"  
+                       placeholder="Ingrese el metodo" required />
+        </div>
+    </div>        
+                
 
 </div>
 

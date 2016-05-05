@@ -19,19 +19,19 @@ class detalle_proforma_grupo{
          ->from('detalle_proforma_grupo de')
          ->join('grupo_ensayo p on de.fkgrupo=p.pkgrupo_ensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('de.fkproforma,de.fkgrupo,p.nombre as grupo,pr.nombre as proforma,p.costo')      
+         ->select('de.fkproforma,de.fkgrupo,p.nombre as grupo,p.costo')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());
         }
     }
-    public function ListarProforma($pkproforma) {
+    public function Listarproforma($pkproforma) {
         try {
            return $this->pdo
          ->from('detalle_proforma_grupo de')
          ->join('grupo_ensayo p on de.fkgrupo=p.pkgrupo_ensayo')
          ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('de.fkproforma,de.fkgrupo,p.nombre as grupo,pr.nombre as proforma,p.costo')
+         ->select('de.fkproforma,de.fkgrupo,p.nombre as grupo,p.costo')
          ->where('pr.pkproforma',$pkproforma)      
          ->fetchAll();
         } catch (Exception $e) {
@@ -42,10 +42,10 @@ class detalle_proforma_grupo{
         try {
            return $this->pdo
          ->from('detalle_proforma_grupo de')
-         ->join('grupo_ensayo p on de.fkgrupo=p.pkgrupo_ensayo')
-         ->join('proforma pr on de.fkproforma=pr.pkproforma')
-         ->select('de.fkproforma,SUM(p.costo) as total')
-         ->groupBy('de.fkproforma')      
+         ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
+         ->select('de.fkproforma,SUM(g.costo) as total')
+         ->groupBy('de.fkproforma')
+         ->orderBy('de.fkproforma')      
          ->fetchAll();
         } catch (Exception $e) {
             die($e->getMessage());

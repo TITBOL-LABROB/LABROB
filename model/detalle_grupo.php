@@ -19,8 +19,22 @@ class Detalle_Grupo{
          ->from('detalle_grupo de')
          ->join('ensayo p on de.fkensayo=p.pkensayo')
          ->join('grupo_ensayo g on de.fkgrupo=g.pkgrupo_ensayo')
-         ->select('de.fkgrupo,de.fkensayo, p.nombre as ensayo,g.nombre as grupo,de.costo')      
+         ->join('unidad_medida u on u.pkunidad=p.fkunidad')
+         ->join('metodo m on m.pkmetodo=de.fkmetodo')
+         ->select('de.fkgrupo,de.fkensayo,de.fkmetodo, p.nombre as ensayo,g.nombre as grupo,u.nombre as medida,m.nombre as metodo,de.costo')      
          ->fetchAll();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function GetDetalle($datos) {
+        try {
+           return $this->pdo
+         ->from('detalle_grupo dm')
+         ->select('dm.*')
+         ->where('dm.fkgrupo=? and dm.fkensayo=?',$datos['fkgrupo'],$datos['fkensayo'])
+         ->fetch();
         } catch (Exception $e) {
             die($e->getMessage());
         }

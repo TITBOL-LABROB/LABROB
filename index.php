@@ -1,7 +1,7 @@
 <?php
 
 //session_start();
-$_controllers_permitidos = array("cliente","departamento","cargo","matriz","usuario","tipo_servicio","tipo_cliente","tipo_muestra","localidad","tipo_recipiente","bitacora","area","parametro","laboratorio","solicitud");
+$_controllers_permitidos = array("cliente","departamento","cargo","matriz","usuario","tipo_servicio","tipo_cliente","tipo_muestra","localidad","tipo_recipiente","bitacora","area","parametro","laboratorio","solicitud","acta");
 $_acciones_permitidos = array("enviar");
 if (!isset($_REQUEST['c'])) {
    /* if (!isset($_SESSION['usuario'])) {

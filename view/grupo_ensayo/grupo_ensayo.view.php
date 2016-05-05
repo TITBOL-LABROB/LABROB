@@ -5,7 +5,7 @@
         
     }
 
-    public function View($lista,$ensayos,$detalle,$precios) {
+    public function View($lista,$ensayos,$metodos,$normas,$detalle,$detalleN,$precios) {
         require_once 'view/header.php';
         require_once 'view/grupo_ensayo/grupo_ensayo-admin.php'; //html
         require_once 'view/footer.php';

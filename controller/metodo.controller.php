@@ -30,7 +30,8 @@ class MetodoController {
       
         $datos = array(
             'nombre' => $_REQUEST['nombre'],
-            'descripcion' => $_REQUEST['descripcion']
+            'descripcion' => $_REQUEST['descripcion'],
+            'palabras_claves' => $_REQUEST['palabras_claves']
         );
 
         if($this->model->Existemetodo($datos['nombre'])!="")
@@ -49,7 +50,7 @@ class MetodoController {
             'pkmetodo'=> $_REQUEST['pkmetodo'],
             'nombre' => $_REQUEST['nombre'],
             'descripcion' => $_REQUEST['descripcion'],
-            'tipo_metodo' => $_REQUEST['tipo_metodo']
+            'palabras_claves' => $_REQUEST['palabras_claves']
         );        
         /*if($this->model->Existemetodo($datos['nombre'])!="")
           {

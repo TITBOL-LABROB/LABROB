@@ -15,13 +15,19 @@
         <input type="text" name="nombre" 
                class="form-control" placeholder="Ingrese el Nombre" required />
     </div>
-
+    <div class="form-group">
+        <label>Palabras Claves</label>
+        <input type="text"  name="palabras_claves" 
+               class="form-control"  placeholder="Ingrese las palabras claves" 
+               required></input>
+    </div>
     <div class="form-group">
         <label>Descripcion</label>
-        <textarea  name="descripcion" id="Telefono" 
+        <textarea  name="descripcion" id="Telefono"  style="resize: none;" 
                class="form-control"  placeholder="Ingrese la Descripcion" 
-               data-validacion-metodo="requerido" ></textarea>
+               required ></textarea>
     </div>
+    
 
 
     <hr/>

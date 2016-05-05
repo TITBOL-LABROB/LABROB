@@ -17,12 +17,12 @@
         require_once 'view/footer.php';
     }
 
-    public function Detalle($proformas,$clientes,$ensayos,$grupos,$matrices,$instituciones) {
+    public function Detalle($proformas,$clientes,$ensayos,$grupos,$matrices,$instituciones,$norma) {
         require_once 'view/header.php';
         require_once 'view/proforma/proforma-detalle.php';
         require_once 'view/footer.php';
     }
-    public function Ver($proformas,$detalle,$detalleG,$area)
+    public function Ver($proformas,$detalle,$detalleG,$area,$cliente,$productos)
     {
         require_once 'view/proforma/proformaprint.php';
     }

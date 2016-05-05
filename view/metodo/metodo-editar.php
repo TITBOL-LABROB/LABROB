@@ -17,12 +17,17 @@
                class="form-control" placeholder="Ingrese el nombre" required />
     </div>
     <div class="form-group">
-        <label>Descripcion</label>
-       <textarea  name="descripcion" id="Telefono" 
-               class="form-control"  placeholder="Ingrese la Descripcion" 
-               data-validacion-metodo="requerido" ><?php echo $metodo->descripcion; ?></textarea>
+        <label>Palabras Claves</label>
+       <input type="text" name="palabras_claves" value="<?php echo $metodo->palabras_claves; ?>" 
+               class="form-control"  placeholder="Ingrese las palabras claves" required ></input>  
     </div>
-
+    <div class="form-group">
+        <label>Descripcion</label>
+       <textarea  name="descripcion"  style="resize: none;" 
+               class="form-control"  placeholder="Ingrese la Descripcion" 
+               data-validacion-metodo="requerido" required><?php echo $metodo->descripcion; ?></textarea>
+    </div>
+    
     <hr/>
     <div class="text-center">
         <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>

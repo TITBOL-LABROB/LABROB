@@ -20,10 +20,9 @@ class ensayo {
         {
            return $this->pdo->from('ensayo p')
                       ->Join('unidad_medida u on u.pkunidad=p.fkunidad')
-                      ->Join('metodo m on m.pkmetodo=p.fkmetodo')
                       ->Join('unidad_medida u on u.pkunidad=p.fkunidad')
                       ->Join('area l on l.pkarea=p.fkarea')
-                      ->select('p.*,u.nombre as medida,m.nombre as metodo,l.nombre as area,u.nombre as medida,p.costo')
+                      ->select('p.*,u.nombre as medida,l.nombre as area,u.nombre as medida,p.costo')
                       ->where('p.estado=1')  
                       ->fetchAll();
         } catch (Exception $e) {

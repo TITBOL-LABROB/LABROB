@@ -38,7 +38,7 @@ $(document).ready(function() {
    });          
 </script>
 <h1 class="page-header">
-    <?php echo 'Nueva Institucion'; ?>
+    <?php echo 'Nueva Institucion/Empresa'; ?>
 </h1>
 
 <ol class="breadcrumb">

@@ -5,7 +5,7 @@
         
     }
 
-    public function View($lista,$ensayos,$detalle,$precios,$normas,$detalleN) {
+    public function View($lista,$ensayos,$detalle,$precios,$normas,$metodos,$detalleN,$grupos,$detalleG,$precioG) {
         require_once 'view/header.php';
         require_once 'view/matriz/matriz-admin.php'; //html
         require_once 'view/footer.php';

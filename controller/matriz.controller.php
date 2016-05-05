@@ -2,9 +2,14 @@
 require_once 'view/matriz/matriz.view.php';
 require_once 'model/matriz.php';
 require_once 'model/detalle_matriz.php';
+require_once 'model/detalle_matriz_proforma.php';
 require_once 'model/ensayo.php';
 require_once 'model/norma.php';
+require_once 'model/metodo.php';
+require_once 'model/grupo_ensayo.php';
 require_once 'model/detalle_matriz_norma.php';
+require_once 'model/detalle_matriz_norma_proforma.php';
+require_once 'model/detalle_matriz_grupo.php';
 
 class MatrizController {
 
@@ -13,7 +18,12 @@ class MatrizController {
     private $detalle;
     private $ensayo;
     private $norma;
+    private $grupo;
+    private $metodo;
     private $detalleN;
+    private $detalleG;
+    private $detalleP;
+    private $detalleNP;
 
     public function __CONSTRUCT() {
         $this->model = new Matriz();
@@ -21,17 +31,28 @@ class MatrizController {
         $this->detalle=new Detalle_Matriz();
         $this->ensayo=new ensayo();
         $this->norma=new Norma();
+        $this->metodo=new Metodo();
+        $this->grupo=new grupo_ensayo();
         $this->detalleN=new detalle_matriz_norma();
+        $this->detalleG=new detalle_matriz_grupo();
+        $this->detalleP=new detalle_matriz_proforma();
+        $this->detalleNP=new detalle_matriz_norma_proforma();
     }
 
     public function Index() {
         $listaroles = $this->model->Listar(); 
         $ensayos=$this->ensayo->Listar();
         $detalle=$this->detalle->listar();
-        $normas=$this->norma->Listar();  
+        $normas=$this->norma->Listar();
+        $metodos=$this->metodo->Listar();
+        $grupos=$this->grupo->Listar();    
         $precios=$this->detalle->listaPrecio();
-        $detalleN=$this->detalleN->Listar();    
-        $this->vista->View($listaroles,$ensayos,$detalle,$precios,$normas,$detalleN);       
+        $precioG=$this->detalleG->listaPrecio();
+        $detalleN=$this->detalleN->Listar();
+        $detalleG=$this->detalleG->Listar();
+
+       // echo "<pre>";print_r($precios); echo "<pre>";print_r($precioG); //  exit;   
+        $this->vista->View($listaroles,$ensayos,$detalle,$precios,$normas,$metodos,$detalleN,$grupos,$detalleG,$precioG);       
     }
 
     public function Nuevo() {
@@ -52,7 +73,7 @@ class MatrizController {
 
         $pkmatriz = $this->model->Registrar($datos);
 
-        header("Location: ?c=matriz&item=matriz de usuario&tarea=agregar&exito=si");
+        header("Location: ?c=matriz&item=matriz&tarea=agregar&exito=si");
     }
     public function Guardar_Cambios() {
       
@@ -92,7 +113,13 @@ class MatrizController {
             'fkmatriz' => $_REQUEST['pkmatriz'],
             'fkensayo' => $_REQUEST['pkensayo']
         );
-        $this->detalle->Eliminar($datos);
+    $detalle=$this->detalle->GetDetalle($datos);           
+    $this->detalleN->Eliminar($detalle->pkdetalle_matriz); 
+
+    $detalleP=$this->detalleP->GetDetalle($datos);   
+    $this->detalleNP->Eliminar($detalleP->pkdetalle_matriz);  
+    
+    $this->detalle->Eliminar($datos); $this->detalleP->Eliminar($datos);
         header('Location: ?c=matriz&item=ensayo de una matriz&tarea=eliminar&exito=si');
     }
 
@@ -117,6 +144,6 @@ class MatrizController {
             header("Location: ?c=matriz&item=matriz de usuario&tarea=eliminar&exito=si");
         }
     }
-
+//7,6,2,8
 }
 ?>

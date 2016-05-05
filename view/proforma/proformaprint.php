@@ -5,17 +5,52 @@ require_once 'resources/bower_components/dompdf/dompdf_config.inc.php';
 date_default_timezone_set("America/La_Paz");
 $fecha=date("Y/m/d");
 $hora=date("h:i:s");
+$matrices='';
+$areasProforma='';
+$ensayos='';
+$c=1;
+foreach ($productos as $pr)
+{
+	if($c==1){
+	$matrices.=''.$pr->matriz;
+    } else $matrices.=', '.$pr->matriz;
+    $c++;
+}
+
+foreach ($area as $a)
+{
+ $areasProforma.="<tr><td colspan='4' style='border:black 0.8px solid;text-align:left;font-size: 120%;'>$a->nombre</td></tr>";
+  $total=0;
+  foreach ($detalle as $de) 
+  {
+
+  	if($a->pkarea==$de->pkarea)
+  	{
+      $areasProforma.="<tr>
+                       <td>$de->ensayo</td>
+                       <td>$de->medida</td>
+                       <td>$de->metodo</td>
+                       <td>$de->costo</td>
+                       </tr>";
+                       $total=$total+$de->costo;
+
+  	}
+  }
+  $areasProforma.="<tr>
+			<td colspan='2'></td>
+			<td><b>Total $a->nombre</b></td>
+			<td style='text-align:right;'><b>$total</b></td>
+		</tr>";
+}
 
 $html="
-
  <!DOCTYPE html>
  <html>
  <head>
  	<title>Proforma</title>
  	<link rel='image/x-icon' href='' type='image/png'>
  	<style>
- 	*{
- 	}
+ 	
  	</style>
  </head>
  <body>
@@ -41,22 +76,20 @@ $html="
 			<td width='25%'></td>
 		</tr>
 		<tr>
-			<td width='25%'>Solicitante:</td>
-			<td width='25%'></td>
+			<td width='25%'>Solicitante: </td>
+			<td width='25%'>$proformas->persona_solicitante</td>
 			<td width='25%'></td>
 			<td width='25%'></td>
 		</tr>
 		<tr>
 			<td width='25%'>Cliente:</td>
-			<td width='25%'></td>
+			<td width='25%'>$cliente->nombre_cliente</td>
 			<td width='25%'></td>
 			<td width='25%'></td>
 		</tr>
 		<tr>
 			<td width='25%'>Producto:</td>
-			<td width='25%'></td>
-			<td width='25%'></td>
-			<td width='25%'></td>
+			<td width='25%'>$matrices</td>
 		</tr>
 		<tr>
 			<td width='25%'>Via Solicitud:</td>
@@ -79,34 +112,7 @@ $html="
 			<td width='20%' ><b>Metodo/Tecnica</b></td>
 			<td width='20%' style='text-align:right;'><b>Precio Unitario (Bs.)</b></td>
 		</tr>
-		<tr>
-			<td colspan='4' style='border:black 0.8px solid;text-align:left;'>FISICO QUIMICA</td>
-		</tr>
-		<tr>
-			<td>Fosforo</td>
-			<td>mg/100ml</td>
-			<td>A0AC 995.11</td>
-			<td style='text-align:right;'>130.00</td>
-		</tr>
-		<tr>
-			<td colspan='2'></td>
-			<td><b>Total Fisico Quimico</b></td>
-			<td style='text-align:right;'><b>1974.00</b></td>
-		</tr>
-		<tr>
-			<td colspan='4' style='border:black 0.8px solid;text-align:left;'>MICROBIOLOGIA</td>
-		</tr>
-		<tr>
-			<td>Mohos y Levaduras</td>
-			<td>UFC/ml</td>
-			<td>A0AC 997.02**</td>
-			<td style='text-align:right;'>295.00</td>
-		</tr>
-		<tr>
-			<td colspan='2'></td>
-			<td><b>Total Microbiologia</b></td>
-			<td style='text-align:right;'><b>595.00</b></td>
-		</tr>
+		$areasProforma;
 	</table>
 	<br>
 	<table width='100%' style='border-collapse: collapse; border:0.7px solid #000000; font-size:10px;' border='0'>
@@ -118,15 +124,15 @@ $html="
 		</tr>
 		<tr>
 			<td width='25%'></td>
-			<td width='25%'style='text-align:right;'>No. Muestras</td>
-			<td width='25%' style='text-align:center;'>1</td>
-			<td width='25%'style='text-align:right;'>2423.00</td>
+			<td width='25%' style='text-align:right;'>No. Muestras</td>
+			<td width='25%' style='text-align:center;'>$proformas->nro_muestras</td>
+			<td width='25%' style='text-align:right;'>2423.00</td>
 		</tr>
 		<tr>
 			<td width='25%'></td>
-			<td width='25%'style='text-align:right;'>Descuento</td>
-			<td width='25%' style='text-align:center;'>5%</td>
-			<td width='25%'style='text-align:right;'>121.00</td>
+			<td width='25%' style='text-align:right;'>Descuento</td>
+			<td width='25%' style='text-align:center;'>$proformas->descuento%</td>
+			<td width='25%' style='text-align:right;'>121.00</td>
 		</tr>
 		<tr>
 			<td width='25%'></td>
@@ -170,6 +176,7 @@ $html="
 $dompdf = new DOMPDF();
 $dompdf->load_html($html);
 $dompdf->render();
+$dompdf->set_paper('a4', 'portrait');
 $canvas = $dompdf->get_canvas();
 $font = Font_Metrics::get_font("Sans Serif", "bold");
 $canvas->page_text(540, 50, "Pagina: {PAGE_NUM} de {PAGE_COUNT}", $font, 10, array(0,0,0));

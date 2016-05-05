@@ -59,13 +59,11 @@ $(document).ready(function() {
                 <input type="number" name="rango_minimo" min="0" class="form-control"  
                        placeholder="Ingrese el rango de trabajo minimo" required />
             </div>
-        <div class="form-group">
-                <label>Costo</label>
-                <input   name="costo" class="form-control"  pattern="[0-9]{1,5}" 
-                       placeholder="Ingrese el Costo" required />
-        </div>
-         
-        </div>
+       
+           
+        
+       </div> 
+      
         <div class="col-md-6">    
             <div class="form-group">
                     <label>Area</label>
@@ -83,66 +81,37 @@ $(document).ready(function() {
                     <?php endforeach; ?>
                     </select>
                 </div>
-             <div class="form-group">
-                    <label>Metodo</label>
-                    <select class="form-control" name="fkmetodo" >
-                        <?php foreach ($metodos as $m): ?>
-                            <option value="<?php echo $m->pkmetodo; ?>" ><?php echo $m->nombre; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                   </div>   
-            <div class="form-group">
-                    <label>Limite Permitible</label>
-                    <input type="number" min="0" name="limite_permitible" class="form-control"  
-                           placeholder="Ingrese el limite de cuantificacion" required />
-            </div>
-<<<<<<< HEAD
-         <div class="form-group">
-                <label>Metodo</label>
-                <select class="form-control" name="fkmetodo" >
-                    <?php foreach ($metodos as $m): ?>
-                        <option value="<?php echo $m->pkmetodo; ?>" ><?php echo $m->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-               </div>   
-        <div class="form-group">
-                <label>Limite Permitible</label>
-                <input type="number" min="0" name="limite_permitible" class="form-control"  
-                       placeholder="Ingrese el limite de cuantificacion" required />
-        </div>
-        <div class="col-md-4">
-         <div class="form-group">
-                <label>Moneda</label>
-                  <select class="form-control" name="moneda" >
-            <option value="Bolivianos">Bolivianos</option>
-            <option value="Dolares">Dolares</option>
-        </select>
-        </div>
-        </div> 
-        <div class="col-md-4">   
+        <div class="col-md-6">   
             <div class="form-group">
                 <label>Con Acreditacion</label>
                 <input type="radio" id="RBCon" name="acreditado" value="Si" class="form-control" checked style="height: 30px; width: 30px;" />
             </div>
          </div>
-         <div class="col-md-4">     
+         <div class="col-md-6">     
             <div class="form-group">
                 <label>Sin Acreditacion</label>
                 <input type="radio" id="RBSin" name="acreditado" value="No" class="form-control" style="height: 30px; width: 30px;" />
             </div>
          </div>
-        </div>    
-=======
-            <div class="form-group">
-                    <label>Normas</label>
-                    <textarea name="normas" class="form-control" style="height:110px; resize:none;" 
-                           placeholder="Ingrese el limite de cuantificacion" required></textarea>
-            </div>        
+        </div>
+        <div class="col-md-3">  
+         <div class="form-group">
+                <label>Costo</label>
+                <input   name="costo" class="form-control"  pattern="[0-9]{1,5}" 
+                       placeholder="Ingrese el Costo" required />
+        </div>
+        </div>
+          <div class="col-md-3"> 
+           <div class="form-group">
+                <label>Moneda</label>
+                  <select class="form-control" name="moneda" >
+                  <option value="Bolivianos">Bolivianos</option>
+                  <option value="Dolares">Dolares</option>
+               </select>
+             </div>
+         </div>  
         </div>          
->>>>>>> origin/master
-    </div>            
-
-
+               
 
     <hr/>
     <div class="text-center">

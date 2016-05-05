@@ -57,7 +57,7 @@
                     if ("<?php echo $exito;?>" == "si") {
                         mensaje = "Se ha agregado un nuevo ";
                     } else {
-                        mensaje = "No se puede registrar un nuevo ";
+                        mensaje = "No se puede registrar un(a) nuevo(a) ";
                         correcto = false;
                     }
                     break;

@@ -61,11 +61,7 @@ $(document).ready(function() {
                 <input type="number" name="rango_minimo" min="0" class="form-control" value="<?php echo $ensayo->rango_minimo; ?>" 
                        placeholder="Ingrese el rango de trabajo minimo" required />
             </div>
-        <div class="form-group">
-                <label>Costo</label>
-                <input   name="costo" class="form-control"  pattern="[0-9]{1,5}" value="<?php echo $ensayo->costo; ?>"
-                       placeholder="Ingrese el Costo" required />
-        </div>
+        
          
         </div>
         <div class="col-md-6">    
@@ -87,30 +83,8 @@ $(document).ready(function() {
                 <?php endforeach; ?>
                 </select>
             </div>
-         <div class="form-group">
-                <label>Metodo</label>
-                <select class="form-control" name="fkmetodo" >
-                 <?php foreach ($metodos as $m): ?>
-                    <option value="<?php echo $m->pkmetodo; ?>" <?php if ($m->pkmetodo == $ensayo->fkmetodo) echo "selected"; ?> ><?php echo $m->nombre; ?></option>
-                <?php endforeach; ?>
-                </select>
-               </div>   
-        <div class="form-group">
-                <label>Limite Permitible</label>
-                <input type="number" min="0" name="limite_permitible" class="form-control"  value="<?php echo $ensayo->limite_permitible; ?>"
-                       placeholder="Ingrese el limite de cuantificacion" required />
-        </div>
-        <div class="col-md-4"> 
-        <div class="form-group">
-                <label>Moneda</label>
-                  <select class="form-control" name="moneda" >
-            <option value="Bolivianos" <?php if ('Bolivianos'==$ensayo->moneda) echo "selected"; ?>>
-            <?php echo "Bolivianos" ?></option>
-            <option value="Dolares" <?php if ('Dolares'==$ensayo->moneda) echo "selected"; ?>>
-            <?php echo "Dolares" ?></option>
-        </select>
-        </div>
-        </div> 
+        
+        
         <div class="col-md-4">   
             <div class="form-group">
                 <label>Con Acreditacion</label>
@@ -122,8 +96,27 @@ $(document).ready(function() {
                 <label>Sin Acreditacion</label>
                 <input type="radio" id="RBSin" name="acreditado" value="No" class="form-control" <?php  if($ensayo->acreditado=="No") echo "checked" ?>  style="height: 30px; width: 30px;" />
             </div>
-         </div>         
-        </div>             
+         </div> 
+        </div>
+        <div class="col-md-3">
+        <div class="form-group">
+                <label>Costo</label>
+                <input   name="costo" class="form-control"  pattern="[0-9]{1,5}" value="<?php echo $ensayo->costo; ?>"
+                       placeholder="Ingrese el Costo" required />
+        </div>
+        </div>
+        <div class="col-md-3">    
+         <div class="form-group">
+        <label>Moneda</label>
+                  <select class="form-control" name="moneda" >
+            <option value="Bolivianos" <?php if ('Bolivianos'==$ensayo->moneda) echo "selected"; ?>>
+            <?php echo "Bolivianos" ?></option>
+            <option value="Dolares" <?php if ('Dolares'==$ensayo->moneda) echo "selected"; ?>>
+            <?php echo "Dolares" ?></option>
+        </select>
+        </div> 
+       </div>        
+                    
 </div>
         
 
@@ -131,5 +124,4 @@ $(document).ready(function() {
         <div class="text-center">
             <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i> Guardar</button>
         </div>
-    </div>
 </form>

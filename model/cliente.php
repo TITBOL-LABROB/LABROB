@@ -50,7 +50,7 @@ class Cliente {
              THEN (j.nombre)              
              end  as char)as nombre_cliente
              FROM cliente c,cliente_natural n,cliente_juridico j,proforma p
-             where p.fkcliente=c.pkcliente and p.pkproforma=$pkproforma and c.estado=1 and c.fktipo_cliente=n.ci or j.nit=c.fktipo_cliente 
+             where p.fkcliente=c.pkcliente and p.pkproforma=$pkproforma and p.fkcliente=c.pkcliente and c.estado=1 and (c.fktipo_cliente=n.ci or j.nit=c.fktipo_cliente) 
              group by c.pkcliente,c.contacto,c.fijo,c.celular,c.correo,c.fax,n.nombre,j.nombre");
             $sql->execute();
             return $sql->fetch(PDO::FETCH_OBJ);
