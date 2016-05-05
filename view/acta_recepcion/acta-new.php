@@ -102,7 +102,7 @@
 
     <div class="form-group">
         <label for="Ensayos_requeridos">Ensayos Requeridos:</label>
-        <input type="text" name="Ensayos_requeridos" id="Ensayos_requeridos" class="form-control" value="Segun Proforma N*.   " />
+        <input type="text" name="Ensayos_requeridos" id="Ensayos_requeridos" class="form-control" value="Segun Proforma N*.   " readonly="true" />
     </div>
 
     <div class="form-group">

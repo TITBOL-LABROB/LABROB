@@ -44,99 +44,76 @@ $html="
 			<td width='15%'>50570</td>
 			<td width='35%'>Jugo Lacteo</td>
 			<td width='35%'>Alimentacion Complementaria Escolar</td>
-			<td width='15%'>5250</td>
+			<td width='15%' style='text-align:center;'>5250 ml.</td>
 		</tr>
 	</table>
 
 	<table width='100%'style='border-collapse: collapse; border:0.7px solid #000000; font-size:10px;' border='0'>
 		<tr>
-			<td width='40%'style='text-align:center;'><b>Ensayos</b></td>
-			<td width='20%' ><b>Unidades</b></td>
-			<td width='20%' ><b>Metodo/Tecnica</b></td>
-			<td width='20%' style='text-align:right;'><b>Precio Unitario (Bs.)</b></td>
+			<td><b>Caracteristicas:</b><br>Sabor Durazno</td>
 		</tr>
 		<tr>
-			<td colspan='4' style='border:black 0.8px solid;text-align:left;'>FISICO QUIMICA</td>
-		</tr>
-		<tr>
-			<td>Fosforo</td>
-			<td>mg/100ml</td>
-			<td>A0AC 995.11</td>
-			<td style='text-align:right;'>130.00</td>
-		</tr>
-		<tr>
-			<td colspan='2'></td>
-			<td><b>Total Fisico Quimico</b></td>
-			<td style='text-align:right;'><b>1974.00</b></td>
-		</tr>
-		<tr>
-			<td colspan='4' style='border:black 0.8px solid;text-align:left;'>MICROBIOLOGIA</td>
-		</tr>
-		<tr>
-			<td>Mohos y Levaduras</td>
-			<td>UFC/ml</td>
-			<td>A0AC 997.02**</td>
-			<td style='text-align:right;'>295.00</td>
-		</tr>
-		<tr>
-			<td colspan='2'></td>
-			<td><b>Total Microbiologia</b></td>
-			<td style='text-align:right;'><b>595.00</b></td>
+			<td><b>Caracteristicas:</b><br>Sabor Durazno</td>
 		</tr>
 	</table>
 	<br>
 	<table width='100%' style='border-collapse: collapse; border:0.7px solid #000000; font-size:10px;' border='0'>
 		<tr>
-			<td width='60%'></td>
-			<td width='20%' style='text-align:right;'>Subtotal</td>
-			<td width='5%' style='text-align:center;'></td>
-			<td width='15%' style='text-align:right;'>2423.00</td>
+			<td><b>Propietario: </b></td>
+			<td><b>Telefono: </b></td>
 		</tr>
 		<tr>
-			<td width='25%'></td>
-			<td width='25%' style='text-align:right;'>No. Muestras</td>
-			<td width='25%' style='text-align:center;'>1</td>
-			<td width='25%' style='text-align:right;'>2423.00</td>
+			<td colspan='2'><b>Direccion:</b></td>
 		</tr>
 		<tr>
-			<td width='25%'></td>
-			<td width='25%' style='text-align:right;'>Descuento</td>
-			<td width='25%' style='text-align:center;'>5%</td>
-			<td width='25%' style='text-align:right;'>121.00</td>
+			<td colspan='2'><b>Tipo de Muestra:</b></td>
 		</tr>
+	</table>
+	<br>
+	<table width='100%' style='border-collapse: collapse; border:0.7px solid #000000; font-size:10px;' border='0'>
 		<tr>
-			<td width='25%'></td>
-			<td width='25%' style='text-align:right;'>Muestreo</td>
-			<td width='25%' style='text-align:center;'></td>
-			<td width='25%' style='text-align:right;'>0.00</td>
+			<td><b>Ensayos Requeridos: </b><br>
+			Segun Proforma No.
+			</td>
 		</tr>
+	</table>
+	<br>
+	<table width='100%' style='border-collapse: collapse; border:0.7px solid #000000; font-size:10px;' border='0'>
 		<tr>
-			<td width='25%'></td>
-			<td width='25%' style='text-align:right;'><b>Total a Cancelar</b></td>
-			<td width='25%' style='text-align:center;'></td>
-			<td width='25%' style='text-align:right;'><b>2302.00</b></td>
+			<td><b>Observaciones: </b><br>
+			Prestacion de servicio laboratorial solicitada
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table width='100%' style='border-collapse: collapse;font-size:10px; border:0.7px solid;'>
+		<tr>
+			<td><b>Responsable de la Muestra: </b>Lic. Andrea Salas Justiniano</td>
+			<td width='20%'>Fecha y Hora de Recepcion:</td>
+			<td width='20%' style='text-align:center;'>$fecha $hora</td>
+		</tr>
+	</table>
+	<br>
+	<table width='100%' style='border-collapse: collapse;font-size:10px; border:0.7px solid;'>
+		<tr>
+			<td><b>Fecha y hora de entrega de resultados: </b>$fecha $hora</td>
 		</tr>
 	</table>
 	<br>
 	<table width='100%' style='border-collapse: collapse; border:0.7px solid #000000;' border='0'>
 		<tr>
-			<td colspan='2' style='font-size:9px;'><b>CONDICIONES DEL SERVICIO</b></td>
+			<td><br><br><br></td>
+			<td><br><br><br></td>
 		</tr>
 		<tr>
-			<td style='font-size:8px;' width='35%'>TIEMPO DE ENTREGA:</td>
-			<td style='font-size:8px;' width='65%'>18 Dias Habiles, sujeto a confirmacion en el momento de ingreso de la muestra</td>
+			<td style='font-size:10px; text-align:center;'>Firma del Interesado</td>
+			<td style='font-size:10px; text-align:center;'>Firma de Recepcion</td>
 		</tr>
 		<tr>
-			<td style='font-size:8px;'>FORMA ENTREGA INFORME RESULTADOS:</td>
-			<td style='font-size:8px;'>En las instalaciones de LABROB presentando el Acta de Recepcion de Muestras</td>
+			<td colspan='2' style='font-size:10px;'><b>Entregado por: </b> Ing. Tatiana Espinosa</td>
 		</tr>
 		<tr>
-			<td style='font-size:8px;'>FORMA PAGO:</td>
-			<td style='font-size:8px;'>Se cancela segun convenio de trabajo</td>
-		</tr>
-		<tr>
-			<td style='font-size:9px;'>EFECTIVO/CHEQUE/DEPOSITO CTA.</td>
-			<td style='font-size:9px;'>CHEQUE A NOMBRE DE: UTALAB-U.A.G.R.M./DEP.BCO. UNION CTA. NO.:1-2230899</td>
+			<td colspan='2' style='font-size:10px;'><b>C.I.: </b> 796523</td>
 		</tr>
 	</table>
  </body>

@@ -3,11 +3,11 @@
 </h1>
 
 <ol class="breadcrumb">
-    <li><a href="?c=area" style="color: #263340";>Area</a></li>
+    <li><a href="?c=acta" style="color: #263340";>Area</a></li>
     <li class="active"><?php echo $area->pkarea != null ? $area->pkarea : 'Nuevo Registro'; ?></li>
 </ol>
 
-<form id="frm-producto" action="?c=area&a=guardarcambios" 
+<form id="frm-producto" action="?c=acta&a=guardarcambios" 
       method="post"  enctype="multipart/form-data"   >
     <input type="hidden" name="pkarea" value="<?php echo $area->pkarea; ?>" />
    
